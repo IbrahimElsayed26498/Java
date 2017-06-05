@@ -19,15 +19,15 @@ public class Comparison
     second = input.nextInt();
 
     if (first == second )
-      System.out.printf("%d == %d", first, second);
+      System.out.printf("%d Is Equal To %d\n", first, second);
 
     if (first != second )
-      System.out.printf("%d != %d", first, second);
+      System.out.printf("%d Is Not Equal To %d\n", first, second);
 
     if ( first > second)
-      System.out.printf("%d > %d", first, second);
+      System.out.printf("%d Is Greater Than %d\n", first, second);
 
     if ( first <= second )
-      System.out.printf("%d <= %d", first, second);
+      System.out.printf("%d Less Than Or Equal To %d\n", first, second);
   }
 }
