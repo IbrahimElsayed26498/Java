@@ -7,6 +7,7 @@ public class Welcome
 // main method begins execution of Java application
   public static void main( String[] args )
     {
-      System.out.println( "Welcome to Java Programming Fundamentals!" );
+      System.out.print("Welcome To \n");
+      System.out.println( "Java Programming \nFundamentals!" );
     } // end method main
 } // end class Welcome1
