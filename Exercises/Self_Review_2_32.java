@@ -66,5 +66,7 @@ public class Self_Review_2_32
           else
             positive++;
         }
+
+    System.out.printf("Number of postives = %d\nNumber of zeroes = %d\nNumber of negatives = %d", positive, zero, negative);
   }
 }
