@@ -12,10 +12,13 @@ public class GradeBookTest
 
     Scanner input = new Scanner( System.in );
 
-    System.out.println("Kindly Enter The Course's Name : ");
-    String nameOfCourse = input.nextLine();
+    System.out.printf("Initial Course Name Is : %s\n", myGradeBook.getCourseName());
+
+    System.out.println("Kindly Enter The Course Name ");
+    String theName = input.nextLine();
+    myGradeBook.setCourseName( theName );
     System.out.println();
 
-    myGradeBook.displayMessage( nameOfCourse ); // Run displayMessage() method on myGradeBook object
+    myGradeBook.displayMessage( ); // Run displayMessage() method on myGradeBook object
   }
 }

@@ -2,8 +2,20 @@
 
 public class GradeBook
 {
-  public void displayMessage( String courseName )
+  private String courseName;
+
+  public void setCourseName( String name )
   {
-    System.out.printf("Welcome To The Grade Book For %s\n", courseName );
+    courseName = name;
+  }
+
+  public String getCourseName()
+  {
+    return courseName;
+  }
+
+  public void displayMessage( )
+  {
+    System.out.printf("Welcome To The Grade Book For %s\n", getCourseName() );
   }
 }
