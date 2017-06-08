@@ -33,6 +33,7 @@ public class GradeBook
 
   public void displayMessage( )
   {
-    System.out.printf("Welcome To The Grade Book For %s With Instructor %s \n", getCourseName(), getInstructorName() );
+    System.out.printf("Welcome To The Grade Book For %s \n", getCourseName() );
+    System.out.printf("This course is presented by %s\n", getInstructorName());
   }
 }
