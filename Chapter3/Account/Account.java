@@ -24,6 +24,17 @@ public class Account
 
   public void credit( double amount )
   {
-      setBalance( getBalance() + amount );
+      if ( amount < 0.0 )
+          setBalance( getBalance() + amount );
+      else
+          System.out.println("Can't deposit negative amount");
+  }
+
+  public void debit ( double withdrawal )
+  {
+      if ( withdrawal <= getBalance() )
+          setBalance( getBalance() - withdrawal );
+      else
+          System.out.println("You can't eat your cake and have it");
   }
 }

@@ -14,6 +14,7 @@ public class AccountTest
 
     Scanner input = new Scanner (System.in);
     double depositAmount;
+    double withdrawalAmount;
 
     System.out.printf(" Enter An Amount to deposit in account1 \n");
     depositAmount = input.nextDouble();
@@ -31,6 +32,26 @@ public class AccountTest
 
     System.out.printf("Adding %.2f to account2 balance \n", depositAmount);
     account2.credit(depositAmount);
+
+    System.out.printf(" account1 balance = %.2f\n", account1.getBalance() );
+    System.out.printf(" account2 balance = %.2f\n", account2.getBalance() );
+
+    System.out.printf(" Enter An Amount to withdraw from account1 \n");
+    withdrawalAmount = input.nextDouble();
+    System.out.println();
+
+    System.out.printf("Reducing %.2f from account1 balance \n", withdrawalAmount );
+    account1.debit( withdrawalAmount );
+
+    System.out.printf(" account1 balance = %.2f\n", account1.getBalance() );
+    System.out.printf(" account2 balance = %.2f\n", account2.getBalance() );
+
+    System.out.printf(" Enter An Amount to withdraw from account2 \n");
+    withdrawalAmount = input.nextDouble();
+    System.out.println();
+
+    System.out.printf("Reducing %.2f from account2 balance \n", withdrawalAmount );
+    account2.debit( withdrawalAmount );
 
     System.out.printf(" account1 balance = %.2f\n", account1.getBalance() );
     System.out.printf(" account2 balance = %.2f\n", account2.getBalance() );
