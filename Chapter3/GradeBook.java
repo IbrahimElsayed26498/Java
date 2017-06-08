@@ -2,8 +2,8 @@
 
 public class GradeBook
 {
-  public void displayMessage()
+  public void displayMessage( String courseName )
   {
-    System.out.println("Welcome To The Grade Book ");
+    System.out.printf("Welcome To The Grade Book For %s\n", courseName );
   }
 }
