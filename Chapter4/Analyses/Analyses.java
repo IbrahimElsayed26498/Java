@@ -11,7 +11,7 @@ public class Analyses
     int passes = 0;
     int failures = 0;
     int studentCounter = 1;
-    int result;
+    int result = 0;
 
     while ( studentCounter <= 10 )
     {
@@ -19,12 +19,14 @@ public class Analyses
       System.out.print( "Enter result (1 = pass, 2 = fail): " );
       result = input.nextInt();
 
-      if (result == 1)
-          passes++;
-      else
-          failures++;
+      while ( ( result == 1 ) || (result == 2) )
+      {
+        if (result == 1)
+            passes++;
+        if ( result == 2)
+            failures++;
 
-
+      }
       // increment studentCounter so loop eventually terminates
       studentCounter = studentCounter + 1;
     } // end while
