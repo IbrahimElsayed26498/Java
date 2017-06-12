@@ -12,13 +12,19 @@ public class Maximum
     Scanner input = new Scanner(System.in);
 
     int counter = 0;
-    int number, largest;
+    int number, temp, secondLargest, largest;
 
     int[] array = new int[10];
 
     System.out.println("Enter 10 Integers ( -1 To Quit)");
 
     largest = array[0];
+    secondLargest = array[1];
+    temp = secondLargest;
+    if ( secondLargest > largest )
+      largest = secondLargest;
+
+
     while ( counter < 10)
     {
       System.out.printf(" %d : ", counter + 1 );
@@ -28,11 +34,14 @@ public class Maximum
       if ( array[counter] == -1)
         break;
       if ( array[counter] > largest )
+      {
+        secondLargest = largest;
         largest = array[counter];
+      }
 
       counter++;
     }
 
-    System.out.printf("The Largest Integer In This Decuple Is %d", largest);
+    System.out.printf("The Two Largest Integers In This Decuple Are %d And %d", largest, secondLargest);
   }
 }
