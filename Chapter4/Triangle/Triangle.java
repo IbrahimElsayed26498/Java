@@ -26,9 +26,5 @@ public class Triangle
       if ( base * base + height * height == hypotenuse * hypotenuse)
           System.out.printf("Your Integers %d, %d and %d Represent The Sides Of A Right-Angled Triangle\n", base, height, hypotenuse);
     }
-
-
-
-
   }
 }
