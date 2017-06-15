@@ -1,4 +1,6 @@
 // Diamond.java
+// Solves 5.24 And 5.25
+
 
 import java.util.Scanner;
 
