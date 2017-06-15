@@ -6,14 +6,14 @@ public class ContinueTest
   {
     int count;
 
-    for (count = 1; count <= 10; count++)
+    for (count = 1; count <= 10 ; count++)
     {
-      if ( count == 5 )
-          continue;
-
-      System.out.printf("%d ", count );
+      //if ( count == 5 )
+        //  continue;
+      if ( count != 5 )
+        System.out.printf("%d ", count );
     }
 
-    System.out.printf("\nUsed continue to skip printing 5\n");
+    System.out.printf("\nAdjusted for loop body to replace continue and Skip Printing 5\n");
   }
 }
