@@ -15,6 +15,7 @@ public class GuessTheNumber
 
       char flag = 'y';
   	  int seed = 1;
+      int count = 0;
 
       int myGuess, response;
 
@@ -26,6 +27,7 @@ public class GuessTheNumber
         {
   			   System.out.println(" Please type your guess : ");
            myGuess = input.nextInt();
+           count++;
 
   			   if (myGuess == response)
   				     System.out.printf( "Excellent!  You guessed the number !");
@@ -33,16 +35,25 @@ public class GuessTheNumber
   				     System.out.printf("Is Too Low! Try Again");
   			   else
   				     System.out.printf("Is Too High! Try Again");
+
   		  } while (myGuess != response);
 
-  		System.out.printf("\nWould You Like To Play Again ? y for Yes Or n for No ");
-  		flag = input.next().charAt( 0 );
+        if ( ( count < 10 ) && ( myGuess == response))
+            System.out.println("\nEither you know the secret or you got lucky !");
+        if ( (count == 10) && ( myGuess == response))
+            System.out.println( "\nAha! You know the secret");
+        else if ((count > 10 ) && ( myGuess == response))
+            System.out.println( "\nYou should be able to do better! ");
 
-  		if (flag == 'y')
-      {
-  			System.out.println(" Enter A Seed : ");
-  			seed = input.nextInt();
-  		}
+
+  		  System.out.printf("\nWould You Like To Play Again ? y for Yes Or n for No ");
+  		  flag = input.next().charAt( 0 );
+
+  		  if (flag == 'y')
+        {
+  			  System.out.println(" Enter A Seed : ");
+  			  seed = input.nextInt();
+  		  }
     }
   }
 
