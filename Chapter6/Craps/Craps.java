@@ -1,12 +1,17 @@
 // Craps.java
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Craps
 {
     private static final Random randomNumbers = new Random();
 
-    private enum Status {CONTINUE, WON, LOST};
+    private enum Status { CONTINUE , WON, LOST };
+
+    //private static final int CONTINUE = 0;
+    //private static final int WON = 1;
+    //private static final int LOST = 2;
 
     private static final int SNAKE_EYES = 2;
     private static final int TREY = 3;
@@ -16,44 +21,38 @@ public class Craps
 
     public static void main( String[] args )
     {
-      int myPoint = 0;
-      Status gameStatus;
+      int bankBalance = 1000;
+    	int wager;
 
-      int sumOfDice = rollDice();
+      Scanner input = new Scanner( System.in );
 
-      switch ( sumOfDice )
+    	do
       {
-        case SEVEN:
-        case YO_LEVEN:
-          gameStatus = Status.WON;
-          break;
-        case SNAKE_EYES:
-        case TREY:
-        case BOX_CARS:
-          gameStatus = Status.LOST;
-          break;
-        default:
-          gameStatus = Status.CONTINUE;
-          myPoint = sumOfDice;
-          System.out.printf("Point Is 5d\n", myPoint );
-          break;
-      }
+    		System.out.println("Enter An Integer For A Wager : " );
+    		wager = input.nextInt();
 
-      while ( gameStatus == Status.CONTINUE )
+    	} while ( wager > bankBalance );
+
+    	Status current = gameOfCrabs();
+
+    	if ( current == Status.WON )
       {
-        sumOfDice = rollDice();
-
-        if ( sumOfDice == myPoint )
-            gameStatus = Status.WON;
-        else
-          if ( sumOfDice == SEVEN )
-              gameStatus = Status.LOST;
-      }
-
-      if ( gameStatus == Status.WON )
-          System.out.println(" Player Wins ");
-      else
-          System.out.println(" Player Loses ");
+    		bankBalance += wager;
+    		System.out.println(" Bank Balance : " + bankBalance );
+    		if ( bankBalance >= 1100 )
+    			System.out.println("You're Up Big ! Keep it going !");
+    		if ( bankBalance >= 1500 )
+    			System.out.println("You're making enormous progress !" );
+    	}
+    	else
+      {
+    		bankBalance -= wager;
+    		System.out.println(" Bank Balance : " + bankBalance );
+    		if (bankBalance <= 100 )
+    			System.out.println( "Careful ! You're headed for broke !");
+    		if ( bankBalance == 0)
+    			System.out.println("Sorry ! You're Busted ! ");
+    	}
     }// end main
 
     public static int rollDice()
@@ -66,5 +65,53 @@ public class Craps
       System.out.printf("Player rolled %d + %d = %d\n", die1, die2, sum);
 
       return sum;
+    }
+
+    public static Status gameOfCrabs()
+    {
+
+
+    	Status gameStatus;
+
+    	int sumOfDice = rollDice();
+      int myPoint  = sumOfDice;
+
+    	switch( sumOfDice )
+      {
+    		case 7:
+    		case 11:
+    			gameStatus = Status.WON;
+    			break;
+    		case 2:
+    		case 3:
+    		case 12:
+    			gameStatus = Status.LOST;
+    		default:
+    			gameStatus = Status.CONTINUE;
+    			myPoint = sumOfDice;
+    			System.out.println( "Point Is " + myPoint);
+    			break;
+    	}
+
+    	while ( gameStatus == Status.CONTINUE )
+      {
+    		sumOfDice = rollDice();
+
+    		if ( sumOfDice == myPoint )
+    			gameStatus = Status.WON;
+    		else if ( sumOfDice == 7 )
+    				gameStatus = Status.LOST;
+    	}
+
+    	if ( gameStatus == Status.WON )
+      {
+    		System.out.println( "Player Wins " );
+    		return gameStatus;
+    	}
+    	else
+      {
+    		System.out.println("Player Losses ");
+    		return gameStatus;
+    	}
     }
 }
