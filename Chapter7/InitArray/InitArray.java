@@ -1,4 +1,5 @@
 // InitArray.java
+// Parsing appropriate values for an array using command-line arguments
 
 public class InitArray
 {
@@ -6,29 +7,26 @@ public class InitArray
   {
     //int[] array = new int[10];
 
-    int[][] array1 = {{ 1, 2, 3}, {4, 5, 6 }};
-    int[][] array2 = { {1, 2}, { 3 }, {4, 5, 6} };
+    if ( args.length != 3 )
+        System.out.println(
+      "Error: Please re-enter the entire command, including\n" +
+      "an array size, initial value and increment." );
 
-    final int ARRAY_LENGTH = 10;
-    int[] array = new int[ARRAY_LENGTH];
-
-    for ( int counter = 0; counter < array.length; counter++ )
-        array[counter] = 2 + 2 * counter;
-
-    System.out.printf( "%s%8s\n", "Index", "Value" );
-
-    for ( int counter = 0; counter < array.length; counter++ )
-         System.out.printf( "%5d%8d\n", counter, array[ counter ] );
-  }
-
-  public static void outputArray( int[][] array )
-  {
-    for ( int row = 0; row < array.length; row++)
+    else
     {
-      for ( int column = 0; column < array[row].length; column++)
-          System.out.printf("%d ", array[ row ][ column ]);
+      int arrayLength = Integer.parseInt( args[ 0 ] );
+      int[] array = new int[ arrayLength ];
 
-      System.out.println();
+      int initialValue = Integer.parseInt( args[ 1 ] );
+      int increment = Integer.parseInt( args[ 2 ] );
+
+      for ( int counter = 0; counter < array.length; counter++ )
+          array[ counter ] = initialValue + increment * counter;
+
+      System.out.printf( "%s%8s\n", "Index", "Value" );
+
+      for ( int counter = 0; counter < array.length; counter++ )
+          System.out.printf( "%5d%8d\n", counter, array[ counter ] );
     }
   }
 }
