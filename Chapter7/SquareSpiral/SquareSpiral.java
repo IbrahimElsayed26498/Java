@@ -18,6 +18,9 @@ public class SquareSpiral extends JPanel
   {
     super.paintComponent( g );
 
+    // set the color
+    g.setColor( RED );
+
     //start the center
     int centerX = getWidth() / 2;
     int centerY = getHeight() - 350;
