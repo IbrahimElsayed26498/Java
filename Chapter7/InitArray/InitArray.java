@@ -5,16 +5,16 @@ public class InitArray
 {
   public static void main( String[] args )
   {
-    //int[] array = new int[10];
+    int arrayLength;
 
-    if ( args.length != 3 )
-        System.out.println(
-      "Error: Please re-enter the entire command, including\n" +
-      "an array size, initial value and increment." );
+    if ( args.length == 0 )
+    {
+        arrayLength = 10;
+    }
 
     else
     {
-      int arrayLength = Integer.parseInt( args[ 0 ] );
+      arrayLength = Integer.parseInt( args[ 0 ] );
       int[] array = new int[ arrayLength ];
 
       int initialValue = Integer.parseInt( args[ 1 ] );
