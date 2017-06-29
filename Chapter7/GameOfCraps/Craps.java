@@ -47,6 +47,7 @@ public class Craps
         Scanner input = new Scanner( System.in );
         Random randomInteger = new Random();
 
+        System.out.printf("You've Chosen To Play %d Games\n", columns );
         // Player Wants To Play Game of Craps 'roll' times
 
         for (int roll = 1; roll < Integer.parseInt( args[ 0 ] ); roll++)
@@ -93,8 +94,10 @@ public class Craps
 
          }// end for Finished playing Games 'roll' times
 
-         System.out.printf("Number Of WINS\t %d \nNumber Of LOSSES %d\n", winningChances/columns, lossingChances/columns );
-         System.out.printf("Your chances of winning Game of Craps Is %.2f\n", winningChances /columns * 1.0  );
+         double limit = getAccuracy( columns );
+
+         System.out.printf("\n\nNumber Of WINS\t %d \nNumber Of LOSSES %d\nNumber of Games %d\n\n", Math.abs(winningChances/columns), Math.abs(lossingChances/columns), columns);
+         System.out.printf("Your chances of winning Game of Craps Is %.2f\n", Math.abs(winningChances) * limit / columns );
 
       }// end else
     }// end main
@@ -157,5 +160,62 @@ public class Craps
     		System.out.println("Player Losses ");
     		return gameStatus;
     	}
+    }
+
+    public static double getAccuracy( int integer )
+    {
+      int c;
+      c = getDigitLength( integer );
+      double k;
+
+      switch (c)
+      {
+        case 1:
+        case 2:
+          k = 10.0;
+          break;
+        case 3:
+          k = 1.0;
+          break;
+        case 4:
+          k = 0.1;
+          break;
+        case 5:
+          k = 0.01;
+          break;
+        case 6:
+          k = 0.001;
+          break;
+        case 7:
+          k = 0.0001;
+          break;
+        case 8:
+          k = 0.00001;
+          break;
+        case 9:
+          k =  0.000001;
+          break;
+        default:
+          System.out.println("Integer Entered Too Long");
+          k = 1.0;
+          break;
+      }
+
+      return k;
+    }
+
+    public static int getDigitLength ( int number )
+    {
+      int digit_length = 0;
+      int buffer = number;
+
+      // While loop determines the length of number
+      while (number != 0)
+      {
+          digit_length++;
+        	number /= 10;
+      }
+
+      return digit_length;
     }
 }
