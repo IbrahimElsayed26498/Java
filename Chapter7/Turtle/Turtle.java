@@ -84,7 +84,10 @@ public class Turtle
             {
               for ( int j = 0; j < 20; j++ )
               {
-                  System.out.printf("%d    ", floor[i][j]);
+                  if ( floor[i][j] == 0 )
+                      System.out.printf("%s    ", "   ");
+                  else
+                      System.out.printf("%s    ", " * ");
               }
               System.out.println();
             }
