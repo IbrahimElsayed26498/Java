@@ -66,7 +66,7 @@ public class Turtle
               }
             }
 
-            else
+            else if ( (facing == Direction.RIGHT) && (currentX + next <= 19) )
             {
               for ( c = currentY; c < ( currentY + next ) % 20 ; c++)
               {
