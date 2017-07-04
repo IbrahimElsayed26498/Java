@@ -18,7 +18,7 @@ public class Turtle
         for ( int j = 0; j < 20; j++ )
             floor[i][j] = 0;
 
-    int[] commands = { 1, 2, 4, 5, 12, 3, 5, 12, 5, 12, 4, 5, 12, 4, 5, 12, 6, 1 };
+    int[] commands = { 1, 2, 4, 5, 12, 3, 5, 12, 5, 12, 4, 5, 12, 3, 3, 3, 5, 12, 6, 1 };
 
     int currentNow = 0, currentNext = 1;
 
@@ -125,7 +125,7 @@ public class Turtle
 
                     m = distanceToBoundary( currentY, currentDirection );
 
-                    for ( count = currentY + next; ((count >= currentY) && (m <= currentY)) ; count--)
+                    for ( count = ( currentY + next) % 20; ((count >= currentY) && (m <= currentY)) ; count--)
                     {
                       floor[currentX][count] = 1;
                     }
@@ -141,7 +141,7 @@ public class Turtle
 
                     m = distanceToBoundary( currentX, currentDirection );
 
-                    for ( count = currentX; ((count < currentX + next) && (m <= 19 - currentX)); count++)
+                    for ( count = currentX; ((count < ( currentX + next ) % 20 ) && (m <= 19 - currentX)); count++)
                     {
                       floor[count][currentY] = 1;
                     }
