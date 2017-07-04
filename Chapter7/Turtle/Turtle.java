@@ -41,14 +41,16 @@ public class Turtle
       {
         case 1:
           {
-            System.out.printf("Command %d = %d : Pen Up, Turtle Ready To Move Without Colour\n", command, commands[command] );
             status = Status.UP;
+            System.out.printf("Command %d = %d : Pen %s, Turtle At [%d, %d] Facing %s Ready To Move Without Colouring\n",
+                              command, commands[command], status, currentX, currentY, facing );
           }
           break;
         case 2:
           {
-            System.out.printf("Command %d = %d : Pen Down, Turtle Ready To Colour\n", command, commands[command] );
             status = Status.DOWN;
+            System.out.printf("Command %d = %d : Pen %s, Turtle At [%d, %d] Facing %s Ready To Colour\n",
+                               command, commands[command], status, currentX, currentY, facing );
 
             currentNow++;
             currentNext++;
