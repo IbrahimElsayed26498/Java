@@ -42,16 +42,15 @@ public class Turtle
       {
         case 1:
           {
-            status = Status.UP;
             System.out.printf("Command %d = %d : Pen %s, Turtle At [%d, %d] Facing %s Ready To Move Without Colouring\n",
                               command, commands[command], status, currentX, currentY, facing );
           }
+
           break;
         case 2:
           {
-            status = Status.DOWN;
             System.out.printf("Command %d = %d : Pen %s, Turtle At [%d, %d] Facing %s Ready To Move While Colouring\n",
-                               command, commands[command], status, currentX, currentY, facing );
+                               command, commands[command], flipStatus( Status.UP ), currentX, currentY, facing );
 
             currentNow++;
             currentNext++;
@@ -205,5 +204,15 @@ public class Turtle
     }
 
     return dir;
+  }
+
+  public static Status flipStatus ( Status s )
+  {
+    if ( s == Status.UP )
+        s = Status.DOWN;
+    else // s == Status.DOWN
+        s = Status.DOWN;
+
+    return s;
   }
 }
