@@ -152,9 +152,6 @@ public class Turtle
           break;
         case 9:
           break;
-        default:
-          System.out.println("Enter 1,2,3,4,6,9, Or 5 followed by a number");
-          break;
       }
     }
   }
