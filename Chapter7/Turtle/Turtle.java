@@ -18,7 +18,7 @@ public class Turtle
         for ( int j = 0; j < 20; j++ )
             floor[i][j] = 0;
 
-    int[] commands = { 1, 2, 5, 12, 5, 12, 4, 5, 12, 4, 5, 12, 4, 5, 12, 6, 1 };
+    int[] commands = { 1, 2, 3, 5, 12, 4, 5, 12, 5, 12, 4, 5, 12, 4, 5, 12, 6, 1 };
 
     int currentNow = 0, currentNext = 1;
 
@@ -45,7 +45,6 @@ public class Turtle
             System.out.printf("Command %d = %d : Pen %s, Turtle At [%d, %d] Facing %s Ready To Move Without Colouring\n",
                               command, commands[command], status, currentX, currentY, facing );
           }
-
           break;
         case 2:
           {
