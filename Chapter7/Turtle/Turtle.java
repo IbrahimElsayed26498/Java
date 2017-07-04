@@ -34,6 +34,7 @@ public class Turtle
     Status status = Status.UP;
     Direction facing = Direction.SOUTH;
     Direction currentDirection;
+    Turn turn = Turn.LEFT;
 
     for ( int command = 0; command < commands.length; command++ )
     {
@@ -49,7 +50,7 @@ public class Turtle
         case 2:
           {
             status = Status.DOWN;
-            System.out.printf("Command %d = %d : Pen %s, Turtle At [%d, %d] Facing %s Ready To Colour\n",
+            System.out.printf("Command %d = %d : Pen %s, Turtle At [%d, %d] Facing %s Ready To Move While Colouring\n",
                                command, commands[command], status, currentX, currentY, facing );
 
             currentNow++;
@@ -60,19 +61,24 @@ public class Turtle
           break;
         case 3:
           {
-            System.out.printf("Command %d = %d : Turtle Turns Right\n", command, commands[command] );
+            turn = Turn.RIGHT;
+            currentDirection = determineDirection( facing, turn );
+
+            System.out.printf("Command %d = %d : Turtle At [%d, %d] Facing %s Turns %s Now Facing %s \n",
+                              command, commands[command], currentX, currentY, facing, turn, currentDirection );
+
             now = commands[command];
             next = commands[command++];
-
-            currentDirection = determineDirection( facing, Turn.RIGHT );
           }
           break;
 
         case 4:
           {
-            System.out.printf("Command %d = %d : Turtle Turns Left\n", command, commands[command] );
+            turn = Turn.LEFT;
+            currentDirection = determineDirection ( facing, turn );
 
-            currentDirection = determineDirection ( facing, Turn.LEFT );
+            System.out.printf("Command %d = %d : Turtle At [%d, %d] Facing %s Turns %s Now Facing %s \n",
+                              command, commands[command], currentX, currentY, facing, turn, currentDirection );
 
             currentNow++;
             currentNext++;
@@ -86,9 +92,11 @@ public class Turtle
               now = commands[command];
               next = commands[command + 1];
 
-              System.out.printf("Command %d = %d : Turtle Moves And Colours %d Tiles\n", command, commands[command], next );
-
               currentDirection = determineDirection( facing, Turn.RIGHT );
+
+              System.out.printf("Command %d = %d : Turtle At [%d, %d] Moves %s And Colours %d Tiles\n",
+                                  command, commands[command], currentX, currentY, currentDirection, next );
+
 
               switch ( currentDirection )
               {
