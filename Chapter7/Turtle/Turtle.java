@@ -18,7 +18,7 @@ public class Turtle
         for ( int j = 0; j < 20; j++ )
             floor[i][j] = 0;
 
-    int[] commands = { 1, 2, 3, 5, 12, 4, 5, 12, 5, 12, 4, 5, 12, 4, 5, 12, 6, 1 };
+    int[] commands = { 1, 2, 4, 5, 12, 3, 5, 12, 5, 12, 4, 5, 12, 4, 5, 12, 6, 1 };
 
     int currentNow = 0, currentNext = 1;
 
@@ -26,6 +26,9 @@ public class Turtle
     int next = commands[currentNext];
 
     int currentX = 0, currentY = 0;
+
+    int finalX = currentX;
+    int finalY = currentY;
 
     int currentPosition = floor[currentX][currentY];
 
@@ -63,7 +66,7 @@ public class Turtle
             currentDirection = determineDirection( facing, turn );
 
             System.out.printf("Command %d = %d : Turtle At [%d, %d] Facing %s Turns %s Now Facing %s \n",
-                              command, commands[command], currentX, currentY, facing, turn, currentDirection );
+                              command, commands[command], finalX, finalY, facing, turn, currentDirection );
 
             now = commands[command];
             next = commands[command++];
@@ -76,7 +79,7 @@ public class Turtle
             currentDirection = determineDirection ( facing, turn );
 
             System.out.printf("Command %d = %d : Turtle At [%d, %d] Facing %s Turns %s Now Facing %s \n",
-                              command, commands[command], currentX, currentY, facing, turn, currentDirection );
+                              command, commands[command], finalX, finalY, facing, turn, currentDirection );
 
             currentNow++;
             currentNext++;
@@ -90,29 +93,29 @@ public class Turtle
               now = commands[command];
               next = commands[command + 1];
 
-              int finalX = currentX;
-              int finalY = currentY;
+              currentDirection = determineDirection( facing, turn );
 
-              currentDirection = determineDirection( facing, Turn.RIGHT );
+              facing = currentDirection;
 
               switch ( currentDirection )
               {
                 case NORTH:
                   {
-                    for ( count = finalX; count >= currentX ; count--)
+                    for ( count = ( currentY + next ) % 20; count >= currentY; count--)
                     {
                       floor[count][currentY] = 1;
                     }
                     finalX -= next;
+
                   }
                   break;
                 case WEST:
                   {
-                    for ( count = currentY; count < ( currentY + next ) % 20 ; count++)
+                    for ( count = ( currentY + next ) % 20; count >= currentY ; count--)
                     {
                       floor[currentX][count] = 1;
                     }
-                    finalY += next;
+                    finalY -= next;
                   }
                   break;
                 case SOUTH:
@@ -126,17 +129,20 @@ public class Turtle
                 break;
                 case EAST:
                   {
-                    for ( count = ( currentY + next ) % 20; count >= currentY ; count--)
+                    for ( count = currentY; count < ( currentY + next ) % 20; count++)
                     {
                       floor[currentX][count] = 1;
                     }
-                    finalY -= next;
+                    finalY += next;
                   }
                   break;
               }
 
               System.out.printf("Command %d = %d : Turtle At [%d, %d] Moves %s And Colours %d Tiles To [%d, %d]\n",
-                                  command, commands[command], currentX, currentY, currentDirection, next, finalX, finalY );
+                                  command, commands[command], currentX, currentY, facing, next, finalX, finalY );
+
+              currentX = finalX;
+              currentY = finalY;
             }
 
             currentNow++;
