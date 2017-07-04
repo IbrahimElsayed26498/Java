@@ -113,7 +113,10 @@ public class Turtle
                     {
                       floor[count][currentY] = 1;
                     }
-                    finalX -= next;
+                    if ( finalX - next >= 0 )
+                        finalX -= next;
+                    else
+                        finalX = 0;
 
                   }
                   break;
@@ -126,7 +129,11 @@ public class Turtle
                     {
                       floor[currentX][count] = 1;
                     }
-                    finalY -= next;
+
+                    if ( finalY - next >= 0 )
+                        finalY -= next;
+                    else
+                        finalY = 0;
                   }
                   break;
                 case SOUTH: // Y Constant
@@ -138,7 +145,11 @@ public class Turtle
                     {
                       floor[count][currentY] = 1;
                     }
-                    finalX += next;
+
+                    if ( finalX + next <= 19 )
+                        finalX += next;
+                    else
+                        finalX = 19;
                   }
                 break;
                 case EAST: // X Constant
@@ -150,7 +161,11 @@ public class Turtle
                     {
                       floor[currentX][count] = 1;
                     }
-                    finalY += next;
+
+                    if ( finalY + next <= 19 )
+                        finalY += next;
+                    else
+                        finalY = 19;
                   }
                   break;
               }
