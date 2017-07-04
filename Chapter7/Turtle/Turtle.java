@@ -93,15 +93,23 @@ public class Turtle
               now = commands[command];
               next = commands[command + 1];
 
+              if ( next > 19)
+                  break;
+
+              int m = 19;
+
               currentDirection = determineDirection( facing, turn );
 
               facing = currentDirection;
 
               switch ( currentDirection )
               {
-                case NORTH:
+                case NORTH: // Y Constant
                   {
-                    for ( count = ( currentY + next ) % 20; count >= currentY; count--)
+
+                    m = distanceToBoundary( currentX, currentDirection );
+
+                    for ( count = ( currentX + next ) % 20; ((count >= currentY) && (m <= currentX)) ; count--)
                     {
                       floor[count][currentY] = 1;
                     }
@@ -109,27 +117,36 @@ public class Turtle
 
                   }
                   break;
-                case WEST:
+                case WEST: // X Constant
                   {
-                    for ( count = ( currentY + next ) % 20; count >= currentY ; count--)
+
+                    m = distanceToBoundary( currentY, currentDirection );
+
+                    for ( count = currentY + next; ((count >= currentY) && (m <= currentY)) ; count--)
                     {
                       floor[currentX][count] = 1;
                     }
                     finalY -= next;
                   }
                   break;
-                case SOUTH:
+                case SOUTH: // Y Constant
                   {
-                    for ( count = currentX; count < ( currentX + next ) % 20 ; count++)
+
+                    m = distanceToBoundary( currentX, currentDirection );
+
+                    for ( count = currentX; ((count < currentX + next) && (m <= 19 - currentX)); count++)
                     {
                       floor[count][currentY] = 1;
                     }
                     finalX += next;
                   }
                 break;
-                case EAST:
+                case EAST: // X Constant
                   {
-                    for ( count = currentY; count < ( currentY + next ) % 20; count++)
+
+                    m = distanceToBoundary( currentY, currentDirection );
+
+                    for ( count = currentY; ((count < (currentY + next) % 20) && (m <= 19 - currentY)) ; count++)
                     {
                       floor[currentX][count] = 1;
                     }
@@ -215,6 +232,49 @@ public class Turtle
     }
 
     return dir;
+  }
+
+  public static int distanceToBoundary( int tileIndex, Direction dir )
+  {
+    int maximumMoves = 19;
+
+    switch ( dir )
+    {
+      case NORTH: // Y Constant
+        {
+          if ( (tileIndex >= 0) && (tileIndex <= 19) )
+              maximumMoves = tileIndex;
+          else
+              maximumMoves = 0;
+        }
+        break;
+      case WEST: // X Constant
+        {
+          if ( (tileIndex >= 0) && (tileIndex <= 19) )
+              maximumMoves = tileIndex;
+          else
+              maximumMoves = 0;
+        }
+        break;
+      case SOUTH: // Y Constant
+        {
+          if ( (tileIndex >= 0) && (tileIndex <= 19) )
+            maximumMoves = 19 - tileIndex;
+          else
+            maximumMoves = 0;
+        }
+        break;
+      case EAST: // X Constant
+        {
+          if ( (tileIndex >= 0) && (tileIndex <= 19) )
+            maximumMoves = 19 - tileIndex;
+          else
+            maximumMoves = 0;
+        }
+        break;
+    }
+
+    return maximumMoves;
   }
 
   public static Status flipStatus ( Status s )
