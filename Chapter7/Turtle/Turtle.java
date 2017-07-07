@@ -18,7 +18,7 @@ public class Turtle
         for ( int j = 0; j < 20; j++ )
             floor[i][j] = 0;
 
-    int[] commands = { 1, 2, 4, 5, 12, 3, 5, 12, 5, 12, 4, 5, 12, 3, 3, 3, 5, 12, 6, 1 };
+    int[] commands = { 1, 2, 4, 5, 10, 9, 3, 5, 12, 9, 5, 9, 3, 5, 12, 3, 3, 5, 11, 1, 6};
 
     int currentNow = 0, currentNext = 1;
 
@@ -170,8 +170,10 @@ public class Turtle
                   break;
               }
 
+
+
               System.out.printf("Command %d = %d : Turtle At [%d, %d] Moves %s And Colours %d Tiles To [%d, %d]\n",
-                                  command, commands[command], currentX, currentY, facing, next, finalX, finalY );
+                                  command, commands[command], currentX, currentY, facing, next + 1, finalX, finalY );
 
               currentX = finalX;
               currentY = finalY;
