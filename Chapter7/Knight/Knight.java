@@ -1,6 +1,7 @@
 // Knight.java
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Knight
 {
@@ -23,75 +24,40 @@ public class Knight
         }
     }
 
+    ArrayList< Position > listOfMoves = new ArrayList< Position >();
 
+    Position currentPosition = new Position(0,0,0);
+    Position p = new Position();
 
-  }
-
-  Position moveKnight( Position Pos )
-  {
-
-    int moveType = possibleMoveType( Pos );
-
-    switch ( moveType )
+    int i = 1;
+    int colouredPositions = 0;
+    do
     {
-      case 0:
-        {
-          i -= 1;
-          j += 2;
-        }
-        break;
-      case 1:
-        {
-          i -= 2;
-          j += 1;
-        }
-        break;
-      case 2:
-        {
-          i -= 2;
-          j -= 1;
-        }
-        break;
-      case 3:
-        {
-          i -= 1;
-          j -= 2;
-        }
-        break;
-      case 4:
-        {
-          i += 1;
-          j -= 2;
-        }
-        break;
-      case 5:
-        {
-          i += 2;
-          j -= 1;
-        }
-        break;
-      case 6:
-        {
-          i += 2;
-          j += 1;
-        }
-        break;
-      case 7:
-        {
-          i += 1;
-          j += 2;
-        }
-        break;
-    }
+      listOfMoves = possibleMoves( currentPosition );
+      p = selectPosition( listOfMoves );
+      p.setValue(++getValue());
+      colouredPositions++;
 
-    return Pos;
+      currentPosition = p;
+
+    } while (i <= 64);
+
+
   }
 
-  public int possibleMoveType( Position p )
+  public static Position selectPosition( ArrayList< Position > list )
   {
-    a = p.currentRow;
-    b = p.currentColumn;
+    int k = list.size();
 
+    private static Random randomNumber = new Random();
+
+    int die = randomNumber.nextInt(k);
+
+    return list.get( die );
+  }
+
+  public static ArrayList< Position > possibleMoves( Position p )
+  {
     ArrayList< Position > possibleNextMoves = new ArrayList< Position >();
 
     switch( p.currentRow )
@@ -723,10 +689,12 @@ public class Knight
                 possibleNextMoves.add(chessBoard[5][6]);
                 possibleNextMoves.add(chessBoard[6][5]);
               }
-          break;
+            break;
         }
         break;
     }
+
+    return possibleNextMoves;
 
   }
 
