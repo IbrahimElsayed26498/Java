@@ -238,16 +238,16 @@ public class Knight
         {
           case 0:
           {
-            possibleNextMoves.add(chessBoard[1][4]);
-            possibleNextMoves.add(chessBoard[2][3]);
             possibleNextMoves.add(chessBoard[1][0]);
             possibleNextMoves.add(chessBoard[2][1]);
+            possibleNextMoves.add(chessBoard[2][3]);
+            possibleNextMoves.add(chessBoard[1][4]);
           }
           break;
           case 1:
           {
-            possibleNextMoves.add(chessBoard[0][0]);
             possibleNextMoves.add(chessBoard[0][4]);
+            possibleNextMoves.add(chessBoard[0][0]);
             possibleNextMoves.add(chessBoard[2][0]);
             possibleNextMoves.add(chessBoard[3][1]);
             possibleNextMoves.add(chessBoard[3][3]);
@@ -256,10 +256,10 @@ public class Knight
           break;
           case 2:
           {
+            possibleNextMoves.add(chessBoard[1][4]);
+            possibleNextMoves.add(chessBoard[0][3]);
             possibleNextMoves.add(chessBoard[0][1]);
             possibleNextMoves.add(chessBoard[1][0]);
-            possibleNextMoves.add(chessBoard[0][3]);
-            possibleNextMoves.add(chessBoard[1][4]);
             possibleNextMoves.add(chessBoard[3][0]);
             possibleNextMoves.add(chessBoard[4][1]);
             possibleNextMoves.add(chessBoard[4][3]);
@@ -280,10 +280,10 @@ public class Knight
           break;
           case 4:
           {
-            possibleNextMoves.add(chessBoard[3][0]);
-            possibleNextMoves.add(chessBoard[2][1]);
-            possibleNextMoves.add(chessBoard[2][3]);
             possibleNextMoves.add(chessBoard[3][4]);
+            possibleNextMoves.add(chessBoard[2][3]);
+            possibleNextMoves.add(chessBoard[2][1]);
+            possibleNextMoves.add(chessBoard[3][0]);
             possibleNextMoves.add(chessBoard[5][0]);
             possibleNextMoves.add(chessBoard[6][1]);
             possibleNextMoves.add(chessBoard[6][3]);
@@ -294,30 +294,29 @@ public class Knight
           {
             possibleNextMoves.add(chessBoard[4][4]);
             possibleNextMoves.add(chessBoard[3][3]);
-            possibleNextMoves.add(chessBoard[4][0]);
             possibleNextMoves.add(chessBoard[3][1]);
+            possibleNextMoves.add(chessBoard[4][0]);
             possibleNextMoves.add(chessBoard[6][0]);
             possibleNextMoves.add(chessBoard[7][1]);
-            possibleNextMoves.add(chessBoard[6][4]);
             possibleNextMoves.add(chessBoard[7][3]);
+            possibleNextMoves.add(chessBoard[6][4]);
           }
           break;
           case 6:
           {
-            possibleNextMoves.add(chessBoard[7][0]);
-            possibleNextMoves.add(chessBoard[7][4]);
-            possibleNextMoves.add(chessBoard[5][0]);
-            possibleNextMoves.add(chessBoard[4][1]);
-            possibleNextMoves.add(chessBoard[6][3]);
+            possibleNextMoves.add(chessBoard[5][4]);
             possibleNextMoves.add(chessBoard[4][3]);
+            possibleNextMoves.add(chessBoard[4][1]);
+            possibleNextMoves.add(chessBoard[5][0]);
+            possibleNextMoves.add(chessBoard[7][4]);
           }
           break;
           case 7:
           {
-            possibleNextMoves.add(chessBoard[6][0]);
-            possibleNextMoves.add(chessBoard[5][1]);
             possibleNextMoves.add(chessBoard[6][4]);
             possibleNextMoves.add(chessBoard[5][3]);
+            possibleNextMoves.add(chessBoard[5][1]);
+            possibleNextMoves.add(chessBoard[6][0]);
           }
           break;
         }
