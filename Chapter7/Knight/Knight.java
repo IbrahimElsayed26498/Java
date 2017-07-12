@@ -1,5 +1,7 @@
 // Knight.java
 
+import java.util.ArrayList;
+
 public class Knight
 {
   public static void main( String[] args )
@@ -25,11 +27,10 @@ public class Knight
 
   }
 
-  Position moveKnight( int i, int j )
+  Position moveKnight( Position Pos )
   {
-    Position Pos = new Position( i, j );
 
-    char moveType = possibleMoveType(  );
+    int moveType = possibleMoveType( Pos );
 
     switch ( moveType )
     {
@@ -83,6 +84,97 @@ public class Knight
         break;
     }
 
-    return Pos(i, j);
+    return Pos;
   }
+
+  public int possibleMoveType( Position p )
+  {
+    a = p.currentRow;
+    b = p.currentColumn;
+
+    ArrayList< Position > possibleNextMoves = new ArrayList< Position >();
+
+    switch( p.currentRow )
+    {
+      case 0:
+        switch( p.currentColumn )
+        {
+          case 0:
+            {
+              possibleNextMoves.add(chessBoard[1][2]);
+              possibleNextMoves.add(chessBoard[2][1]);
+            }
+            break;
+          case 1:
+            {
+              possibleNextMoves.add(chessBoard[3][1]);
+              possibleNextMoves.add(chessBoard[2][2]);
+              possibleNextMoves.add(chessBoard[0][2]);
+            }
+            break;
+          case 2:
+            {
+              possibleNextMoves.add(chessBoard[4][1]);
+              possibleNextMoves.add(chessBoard[3][2]);
+              possibleNextMoves.add(chessBoard[0][1]);
+              possibleNextMoves.add(chessBoard[2][1]);
+            }
+            break;
+          case 3:
+            {
+              possibleNextMoves.add(chessBoard[5][1]);
+              possibleNextMoves.add(chessBoard[4][2]);
+              possibleNextMoves.add(chessBoard[1][1]);
+              possibleNextMoves.add(chessBoard[2][2]);
+            }
+            break;
+          case 4:
+            {
+              possibleNextMoves.add(chessBoard[6][1]);
+              possibleNextMoves.add(chessBoard[5][2]);
+              possibleNextMoves.add(chessBoard[2][1]);
+              possibleNextMoves.add(chessBoard[3][2]);
+            }
+            break;
+          case 5:
+            {
+              possibleNextMoves.add(chessBoard[7][1]);
+              possibleNextMoves.add(chessBoard[6][2]);
+              possibleNextMoves.add(chessBoard[3][1]);
+              possibleNextMoves.add(chessBoard[4][2]);
+            }
+            break;
+          case 6:
+            {
+              possibleNextMoves.add(chessBoard[7][2]);
+              possibleNextMoves.add(chessBoard[4][1]);
+              possibleNextMoves.add(chessBoard[5][2]);
+            }
+            break;
+          case 7:
+            {
+              possibleNextMoves.add(chessBoard[5][2]);
+              possibleNextMoves.add(chessBoard[6][1]);
+            }
+            break;
+        }
+        break;
+      case 1:
+        break;
+      case 2:
+        break;
+      case 3:
+        break;
+      case 4:
+        break;
+      case 5:
+        break;
+      case 6:
+        break;
+      case 7:
+        break;
+    }
+
+  }
+
 }
