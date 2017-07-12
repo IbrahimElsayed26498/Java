@@ -5,12 +5,13 @@ import java.util.Random;
 
 public class Knight
 {
+  public static final int ROWS = 8;
+  public static final int COLUMNS = 8;
+
+  public static Position[][] chessBoard = new Position[ROWS][COLUMNS];
+
   public static void main( String[] args )
   {
-    final int ROWS = 8;
-    final int COLUMNS = 8;
-
-    Position[][] chessBoard = new Position[ROWS][COLUMNS];
 
     // Initialise the chessBoard to zero's
 
@@ -27,19 +28,20 @@ public class Knight
     ArrayList< Position > listOfMoves = new ArrayList< Position >();
 
     Position currentPosition = new Position(0,0,0);
-    Position p = new Position();
+    Position p = new Position(0,0,0);
 
-    int i = 1;
+    int i = 1, val;
     int colouredPositions = 0;
     do
     {
       listOfMoves = possibleMoves( currentPosition );
 
-
-
       p = selectPosition( listOfMoves );
-      p.setValue(++getValue());
-      colouredPositions++;
+      val = p.getValue();
+      val++;
+      p.setValue(val);
+      if ( p.getValue() > 0 )
+          colouredPositions++;
 
       currentPosition = p;
 
@@ -62,15 +64,15 @@ public class Knight
 
   public static Position selectPosition( ArrayList< Position > list )
   {
-    for ( Position count : listOfMoves )
+    /*for ( Position count : list )
     {
       if ( count.getValue() >= 1 )
         listOfMoves.remove(count);
-    }
+    }*/
 
     int k = list.size();
 
-    private static Random randomNumber = new Random();
+    Random randomNumber = new Random();
 
     int die = randomNumber.nextInt(k);
 
@@ -81,10 +83,12 @@ public class Knight
   {
     ArrayList< Position > possibleNextMoves = new ArrayList< Position >();
 
-    switch( p.currentRow )
+    //int a = p.getCurrentRow()
+
+    switch( p.getCurrentRow() )
     {
       case 0:
-        switch( p.currentColumn )
+        switch( p.getCurrentColumn() )
         {
           case 0:
             {
@@ -147,7 +151,7 @@ public class Knight
         }
         break;
       case 1:
-        switch( p.currentColumn )
+        switch( p.getCurrentColumn() )
         {
           case 0:
             {
@@ -221,7 +225,7 @@ public class Knight
           }
           break;
       case 2:
-        switch( p.currentColumn )
+        switch( p.getCurrentColumn() )
         {
           case 0:
           {
@@ -309,7 +313,7 @@ public class Knight
         }
         break;
       case 3:
-        switch( p.currentColumn )
+        switch( p.getCurrentColumn() )
         {
           case 0:
               {
@@ -398,7 +402,7 @@ public class Knight
         }
         break;
       case 4:
-        switch( p.currentColumn )
+        switch( p.getCurrentColumn() )
         {
           case 0:
               {
@@ -487,7 +491,7 @@ public class Knight
         }
         break;
       case 5:
-        switch( p.currentColumn )
+        switch( p.getCurrentColumn() )
         {
           case 0:
               {
@@ -576,7 +580,7 @@ public class Knight
         }
         break;
       case 6:
-        switch( p.currentColumn )
+        switch( p.getCurrentColumn() )
         {
           case 0:
               {
@@ -651,7 +655,7 @@ public class Knight
         }
         break;
       case 7:
-        switch( p.currentColumn )
+        switch( p.getCurrentColumn() )
         {
           case 0:
               {
