@@ -34,6 +34,9 @@ public class Knight
     do
     {
       listOfMoves = possibleMoves( currentPosition );
+
+
+
       p = selectPosition( listOfMoves );
       p.setValue(++getValue());
       colouredPositions++;
@@ -42,11 +45,29 @@ public class Knight
 
     } while (i <= 64);
 
+    // Display The ChessBoard
+
+    for ( int row = 0; row < ROWS; row++ )
+    {
+        for ( int column = 0; column < COLUMNS; column++ )
+        {
+
+          System.out.printf("%d  ", chessBoard[row][column].getValue());
+
+        }
+        System.out.println();
+    }
 
   }
 
   public static Position selectPosition( ArrayList< Position > list )
   {
+    for ( Position count : listOfMoves )
+    {
+      if ( count.getValue() >= 1 )
+        listOfMoves.remove(count);
+    }
+
     int k = list.size();
 
     private static Random randomNumber = new Random();
