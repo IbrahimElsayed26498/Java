@@ -64,6 +64,7 @@ public class Knight
 
   public static Position selectPosition( ArrayList< Position > list )
   {
+    // Use this section to remove any positions which have above zero
     /*for ( Position count : list )
     {
       if ( count.getValue() >= 1 )
@@ -718,9 +719,6 @@ public class Knight
         }
         break;
     }
-
     return possibleNextMoves;
-
   }
-
 }
