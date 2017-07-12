@@ -16,14 +16,8 @@ public class Knight
     // Initialise the chessBoard to zero's
 
     for ( int row = 0; row < ROWS; row++ )
-    {
-        for ( int column = 0; column < COLUMNS; column++ )
-        {
-          chessBoard[row][column].setCurrentRow( row );
-          chessBoard[row][column].setCurrentColumn( column );
-          chessBoard[row][column].setValue( 0 );
-        }
-    }
+      for ( int column = 0; column < COLUMNS; column++ )
+        chessBoard[row][column] = new Position(row, column, 0);
 
     ArrayList< Position > listOfMoves = new ArrayList< Position >();
 
