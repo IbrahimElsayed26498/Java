@@ -110,7 +110,7 @@ public class Knight
     for ( i = 0; i < k; i++)
     {
       if ( list.get(i).getValue() > 1 )
-        list.remove(i);
+        list.remove(list.get(i));
       k--;
     }
 
