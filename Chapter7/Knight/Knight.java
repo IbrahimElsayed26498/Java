@@ -77,7 +77,7 @@ public class Knight
 
     // Display The ChessBoard
 
-    System.out.println("ChessBoard After Knight Moves");
+    System.out.println("ChessBoard A Knight Moves");
     System.out.println();
 
     for ( int row = 0; row < ROWS; row++ )
@@ -103,7 +103,18 @@ public class Knight
         listOfMoves.remove(count);
     }*/
 
-    int k = list.size();
+    int i, k = list.size();
+
+    System.out.printf("Original list is of size %d\n", k);
+
+    for ( i = 0; i < k; i++)
+    {
+      if ( list.get(i).getValue() > 1 )
+        list.remove(i);
+      k--;
+    }
+
+    System.out.printf("Current list is of size %d\n", k);
 
     Random randomNumber = new Random();
 
