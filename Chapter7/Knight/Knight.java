@@ -105,16 +105,12 @@ public class Knight
 
     int i, k = list.size();
 
-    System.out.printf("Original list is of size %d\n", k);
-
     for ( i = 0; i < k; i++)
     {
       if ( list.get(i).getValue() > 1 )
-        list.remove(list.get(i));
+        list.remove(i);
       k--;
     }
-
-    System.out.printf("Current list is of size %d\n", k);
 
     Random randomNumber = new Random();
 
