@@ -7,39 +7,21 @@ public class Knight
 {
   public static final int ROWS = 8;
   public static final int COLUMNS = 8;
+  public static final int POSITIONS = 64;
 
   public static Position[][] chessBoard = new Position[ROWS][COLUMNS];
 
   public static void main( String[] args )
   {
 
-    // Initialise the chessBoard to zero's
+      // Initialise the chessBoard to zero's
+
+    System.out.println("ChessBoard Before Knight Moves");
+    System.out.println();
 
     for ( int row = 0; row < ROWS; row++ )
       for ( int column = 0; column < COLUMNS; column++ )
         chessBoard[row][column] = new Position(row, column, 0);
-
-    ArrayList< Position > listOfMoves = new ArrayList< Position >();
-
-    Position currentPosition = new Position(0,0,0);
-    Position p = new Position(0,0,0);
-
-    int i = 1, val;
-    int colouredPositions = 0;
-    do
-    {
-      listOfMoves = possibleMoves( currentPosition );
-
-      p = selectPosition( listOfMoves );
-      val = p.getValue();
-      val++;
-      p.setValue(val);
-      if ( p.getValue() > 0 )
-          colouredPositions++;
-
-      currentPosition = p;
-
-    } while (i <= 64);
 
     // Display The ChessBoard
 
@@ -54,6 +36,62 @@ public class Knight
         System.out.println();
     }
 
+    ArrayList< Position > listOfMoves = new ArrayList< Position >();
+
+    Position currentPosition = new Position(0,0,0);
+
+    Position p = new Position(0,0,0);
+
+    int i = 1, val;
+    int colouredPositions = 0;
+
+    do
+    {
+      listOfMoves = possibleMoves( currentPosition );
+
+      p = selectPosition( listOfMoves );
+
+      val = p.getValue();
+      val++;
+
+      p.setValue(val);
+
+      i++;
+      currentPosition = p;
+
+    } while (i <= POSITIONS);
+
+    // Count the coloured POSITIONS
+
+    for ( int row = 0; row < ROWS; row++ )
+    {
+        for ( int column = 0; column < COLUMNS; column++ )
+        {
+          if ( chessBoard[row][column].getValue() > 0 )
+          {
+            colouredPositions++;
+          }
+        }
+        System.out.println();
+    }
+
+    // Display The ChessBoard
+
+    System.out.println("ChessBoard After Knight Moves");
+    System.out.println();
+
+    for ( int row = 0; row < ROWS; row++ )
+    {
+        for ( int column = 0; column < COLUMNS; column++ )
+        {
+          //if ( chessBoard[row][column].getValue() > 0 )
+            System.out.printf("%d  ", chessBoard[row][column].getValue());
+
+        }
+        System.out.println();
+    }
+
+    System.out.printf("Your Knight has moved %d positions", colouredPositions );
   }
 
   public static Position selectPosition( ArrayList< Position > list )
@@ -83,14 +121,15 @@ public class Knight
     switch( p.getCurrentRow() )
     {
       case 0:
-        switch( p.getCurrentColumn() )
         {
-          case 0:
-            {
-              possibleNextMoves.add(chessBoard[2][1]);
-              possibleNextMoves.add(chessBoard[1][2]);
-            }
-            break;
+          switch( p.getCurrentColumn() )
+          {
+            case 0:
+              {
+                possibleNextMoves.add(chessBoard[2][1]);
+                possibleNextMoves.add(chessBoard[1][2]);
+              }
+              break;
           case 1:
             {
               possibleNextMoves.add(chessBoard[3][1]);
@@ -143,9 +182,11 @@ public class Knight
               possibleNextMoves.add(chessBoard[5][1]);
             }
             break;
+          }
         }
         break;
       case 1:
+        {
         switch( p.getCurrentColumn() )
         {
           case 0:
@@ -217,9 +258,10 @@ public class Knight
               possibleNextMoves.add(chessBoard[5][0]);
             }
             break;
-          }
-          break;
+          }}
+        break;
       case 2:
+        {
         switch( p.getCurrentColumn() )
         {
           case 0:
@@ -305,10 +347,10 @@ public class Knight
             possibleNextMoves.add(chessBoard[6][0]);
           }
           break;
-        }
+        }}
         break;
       case 3:
-        switch( p.getCurrentColumn() )
+        {switch( p.getCurrentColumn() )
         {
           case 0:
               {
@@ -394,10 +436,10 @@ public class Knight
                 possibleNextMoves.add(chessBoard[6][1]);
               }
             break;
-        }
+        }}
         break;
       case 4:
-        switch( p.getCurrentColumn() )
+        {switch( p.getCurrentColumn() )
         {
           case 0:
               {
@@ -483,10 +525,10 @@ public class Knight
                 possibleNextMoves.add(chessBoard[6][2]);
               }
             break;
-        }
+        }}
         break;
       case 5:
-        switch( p.getCurrentColumn() )
+        {switch( p.getCurrentColumn() )
         {
           case 0:
               {
@@ -572,10 +614,10 @@ public class Knight
                 possibleNextMoves.add(chessBoard[6][3]);
               }
             break;
-        }
+        }}
         break;
       case 6:
-        switch( p.getCurrentColumn() )
+        {switch( p.getCurrentColumn() )
         {
           case 0:
               {
@@ -647,10 +689,10 @@ public class Knight
                 possibleNextMoves.add(chessBoard[6][4]);
               }
             break;
-        }
+        }}
         break;
       case 7:
-        switch( p.getCurrentColumn() )
+        {switch( p.getCurrentColumn() )
         {
           case 0:
               {
@@ -710,9 +752,11 @@ public class Knight
                 possibleNextMoves.add(chessBoard[6][5]);
               }
             break;
-        }
+        }}
         break;
     }
+
     return possibleNextMoves;
+
   }
 }
