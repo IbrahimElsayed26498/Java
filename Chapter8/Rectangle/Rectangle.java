@@ -2,8 +2,14 @@
 
 public class Rectangle
 {
-  private double length = 1;
-  private double width = 1;
+  private double length;
+  private double width;
+
+  public Rectangle()
+  {
+    setLength(1);
+    setWidth(1);
+  }
 
   public Rectangle( double l, double w )
   {
