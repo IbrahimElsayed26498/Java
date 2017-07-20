@@ -11,7 +11,7 @@ public class Date
   public Date( int theMonth, int theDay, int theYear )
   {
     month = checkMonth( theMonth );
-    year = theYear;
+    year = checkYear(theYear);
     day = checkDay( theDay );
 
     System.out.printf("Date object constructor for date %s\n", this );
@@ -22,7 +22,7 @@ public class Date
     if ( testMonth > 0 && testMonth <= 12 )
         return testMonth;
     else
-      throw new IllegalArgumentException("Month Must Be 1 -12 ");
+      throw new IllegalArgumentException("Month Must Be [1, 12] ");
   }
 
   private int checkDay( int testDay )
@@ -36,8 +36,46 @@ public class Date
     throw new IllegalArgumentException("Day Out of range for the specified month and year");
   }
 
+  private int checkYear( int testYear )
+  {
+    if ( testYear > 1970 && testYear <= 3000 )
+        return testYear;
+    else
+      throw new IllegalArgumentException("Month Must Be In [1970, 3000]");
+  }
+
+  public int getMonth()
+  {
+    return month;
+  }
+
+  public int getDay()
+  {
+    return day;
+  }
+
+  public int getYear()
+  {
+    return year;
+  }
+
+  public void nextDay()
+  {
+    day = checkDay( getDay() + 1 );
+  }
+
+  public void nextMonth()
+  {
+    month = checkMonth( getMonth() + 1 );
+  }
+
+  public void nextYear()
+  {
+    year = checkYear( getYear() + 1 );
+  }
+
   public String toString()
   {
-    return String.format("%d/%d/%d", month, day, year);
+    return String.format("%d/%d/%d", getMonth(), getDay(), getYear());
   }
 }
