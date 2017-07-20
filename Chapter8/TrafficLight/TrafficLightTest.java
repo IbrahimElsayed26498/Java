@@ -10,7 +10,7 @@ public class TrafficLightTest
 
     // print all trafficlights in enum light
     for ( TrafficLight lights : TrafficLight.values() )
-        System.out.printf("%-10s%-45s\n", lights, lights.getDuration() );
+        System.out.printf("%-10s%-45s\n", lights, lights.getDuration().getSeconds() );
 
     System.out.println("\nDisplay A Range Of Enum Constants: \n");
   }
