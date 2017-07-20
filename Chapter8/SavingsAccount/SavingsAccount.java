@@ -3,22 +3,22 @@
 public class SavingsAccount
 {
   private static double annualInterestRate; // Annual Interest Rate For All Account Rate
-  private int savingsBalance; // Amount on deposit
+  private double savingsBalance; // Amount on deposit
 
   public SavingsAccount(  )
   {
-    this(0.05, 2000);
+    this(0.05, 2000.00);
   }
 
   public SavingsAccount( double interestRate )
   {
-    this(interestRate, 2000);
+    this(interestRate, 2000.00);
   }
 
-  public SavingsAccount(double interestRate, int balance)
+  public SavingsAccount(double interestRate, double balance)
   {
     annualInterestRate = ( interestRate >= 0.00 ? interestRate : 0.00 );
-    savingsBalance = ( balance >= 2000 ? balance : 2000 );
+    savingsBalance = ( balance >= 2000.00 ? balance : 2000.00 );
   }
 
   public static void setAnnualInterestRate( double interestRate)
@@ -31,7 +31,7 @@ public class SavingsAccount
     return annualInterestRate;
   }
 
-  public void setSavingsBalance( int bal )
+  public void setSavingsBalance( double bal )
   {
     savingsBalance += bal;
   }
@@ -41,7 +41,7 @@ public class SavingsAccount
     savingsBalance += getSavingsBalance();
   }
 
-  public int getSavingsBalance()
+  public double getSavingsBalance()
   {
     return savingsBalance;
   }
