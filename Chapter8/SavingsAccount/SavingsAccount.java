@@ -7,18 +7,22 @@ public class SavingsAccount
 
   public SavingsAccount(  )
   {
-    this(0.05, 2000.00);
+    this(0.0, 0.00);
   }
 
-  public SavingsAccount( double interestRate )
+  public SavingsAccount( double savings )
   {
-    this(interestRate, 2000.00);
+    if ( savings > 1.00)
+    {
+      setSavingsBalance(savings);
+      setAnnualInterestRate(0.00);
+    }
   }
 
   public SavingsAccount(double interestRate, double balance)
   {
     annualInterestRate = ( interestRate >= 0.00 ? interestRate : 0.00 );
-    savingsBalance = ( balance >= 2000.00 ? balance : 2000.00 );
+    savingsBalance = ( balance >= 0.00 ? balance : 0.00 );
   }
 
   public static void setAnnualInterestRate( double interestRate)
@@ -48,6 +52,8 @@ public class SavingsAccount
 
   public double calculateMonthlyInterest()
   {
-    return getSavingsBalance() * getAnnualInterestRate() / 12;
+    double l = getSavingsBalance() * getAnnualInterestRate() / 12;
+    setSavingsBalance( getSavingsBalance() + l);
+    return l;
   }
 }
