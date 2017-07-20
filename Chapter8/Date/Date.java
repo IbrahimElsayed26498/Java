@@ -13,8 +13,6 @@ public class Date
     month = checkMonth( theMonth );
     year = checkYear(theYear);
     day = checkDay( theDay );
-
-    System.out.printf("Date object constructor for date %s\n", this );
   }
 
   private int checkMonth( int testMonth )
