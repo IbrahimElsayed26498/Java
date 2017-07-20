@@ -42,24 +42,29 @@ public class Complex
     return imaginaryPart;
   }
 
-  public Complex add( Complex addendOne, Complex addendTwo )
+  public Complex add( Complex addendTwo )
   {
-    return new Complex( addendOne.getRealPart() + addendTwo.getRealPart(), addendOne.getImaginaryPart() + addendTwo.getImaginaryPart());
+     Complex addendOne = this;
+     return new Complex( addendOne.getRealPart() + addendTwo.getRealPart(), addendOne.getImaginaryPart() + addendTwo.getImaginaryPart());
   }
 
-  public Complex subtract(Complex first, Complex second)
+  public Complex subtract( Complex second)
   {
-    Complex difference = new Complex();
-
-    difference.setRealPart( first.getRealPart() - second.getRealPart());
-    difference.setImaginaryPart( first.getImaginaryPart() - second.getImaginaryPart());
-
-    return difference;
+    Complex first = new Complex();
+    return new Complex( first.getRealPart() - second.getRealPart(), first.getImaginaryPart() - second.getImaginaryPart() );
   }
 
-  public String printComplex()
+  public String toString()
   {
-    return String.format("( %.2f + %.2f i )", getRealPart(), getImaginaryPart());
+
+    if (getImaginaryPart() == 0.0)
+      return getRealPart() + " ";
+    if (getRealPart() == 0)
+      return getImaginaryPart() + "i";
+    if (getImaginaryPart() <  0)
+      return getRealPart() + " - " + (-getImaginaryPart()) + "i";
+
+    return getRealPart() + " + " + getImaginaryPart() + "i";
   }
 
 }
