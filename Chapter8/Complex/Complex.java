@@ -56,15 +56,11 @@ public class Complex
 
   public String toString()
   {
-
-    if (getImaginaryPart() == 0.0)
-      return getRealPart() + " ";
-    if (getRealPart() == 0)
-      return getImaginaryPart() + "i";
+    if ( getImaginaryPart() == 0.00 && getRealPart() == 0.00 )
+      return 0.00 + " + " + getImaginaryPart() + "i";
     if (getImaginaryPart() <  0)
       return getRealPart() + " - " + (-getImaginaryPart()) + "i";
 
     return getRealPart() + " + " + getImaginaryPart() + "i";
   }
-
 }

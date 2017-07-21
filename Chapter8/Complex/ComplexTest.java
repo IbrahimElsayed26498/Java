@@ -10,19 +10,19 @@ public class ComplexTest
     Complex d = new Complex();
 
     System.out.println("Complex Numbers a,b,c,d Before Arithmetic");
-    a.toString();
-    b.toString();
-    c.toString();
-    d.toString();
+    System.out.printf("a = %s\n", a.toString());
+    System.out.printf("b = %s\n", b.toString());
+    System.out.printf("c = %s\n", c.toString());
+    System.out.printf("d = %s\n", d.toString());
 
-    a.add( b);
-    a.subtract( b);
+    c = a.add(b);
+    d = a.subtract(b);
 
-    System.out.println("Complex Numbers After Arithmetic, Notice Changes In c and d");
-    c.toString();
-    System.out.println("c = " + c);
-    d.toString();
-    System.out.println("c = " + d);
+    System.out.println("Complex Numbers After Arithmetic [c = a + b, d = a - b], Notice Changes In c and d");
+    System.out.printf("a = %s\n", a.toString());
+    System.out.printf("b = %s\n", b.toString());
+    System.out.printf("c = %s\n", c.toString());
+    System.out.printf("d = %s\n", d.toString());
 
   }
 }
