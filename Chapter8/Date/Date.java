@@ -6,7 +6,8 @@ public class Date
   private int day; // 1 - 31 based on month
   private int year; // any year
 
-  private static final int[] daysPerMonth = {0,31,28,31,30,31,30,31,31,30,31,30,31};
+  private static final int[] daysPerMonth = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+  private static final int[] daysUpToMonth = {0,31, 59, 90,120,151,181,212,243,273,304,334,365};
 
   public Date( int theMonth, int theDay, int theYear )
   {
@@ -15,23 +16,48 @@ public class Date
     day = checkDay( theDay );
   }
 
+  public Date(String theMonth, int theDay, int theYear)
+  {
+    month = stringToMonth(theMonth);
+    day = theDay;
+    year = theYear;
+  }
+
+  public Date(int dayInYear, int theYear)
+  {
+    month = findMonthOfYear(dayInYear);
+    day = findDayOfMonth(dayInYear);
+    year = theYear;
+  }
+
   private int checkMonth( int testMonth )
   {
+    int t = 0;
+
+    if ( testMonth > 12)
+      t = testMonth % 12;
     if ( testMonth > 0 && testMonth <= 12 )
-        return testMonth;
-    else
-      throw new IllegalArgumentException("Month Must Be [1, 12] ");
+        t = testMonth;
+
+    return t;
   }
 
   private int checkDay( int testDay )
   {
-    if ( testDay > 0 && testDay <= daysPerMonth[month])
-        return testDay;
+    int t = 0;
+    if ( testDay > 31)
+    {
+      t = findDayOfMonth(testDay);
+      if ( testDay > 0 && testDay <= daysPerMonth[month])
+          t = testDay;
 
-    if ( month == 2 && testDay == 29 && ( year % 400 == 0 || ( year % 4 == 0 && year % 100 != 0)))
-        return testDay;
+      if ( month == 2 && testDay == 29 && ( year % 400 == 0 || ( year % 4 == 0 && year % 100 != 0)))
+          t = testDay;
+    }
+    if ( testDay <= 31)
+      t = testDay;
 
-    throw new IllegalArgumentException("Day Out of range for the specified month and year");
+    return testDay;
   }
 
   private int checkYear( int testYear )
@@ -125,7 +151,79 @@ public class Date
         Month = "December";
         break;
     }
-
     return Month;
+  }
+
+  public int stringToMonth( String s )
+  {
+    int integer = 0;
+
+    switch( s )
+    {
+      case "January":
+        integer = 1;
+        break;
+      case "February":
+        integer = 2;
+        break;
+      case "March":
+        integer = 3;
+        break;
+      case "April":
+        integer = 4;
+        break;
+      case "May":
+        integer = 5;
+        break;
+      case "June":
+        integer = 6;
+        break;
+      case "July":
+        integer = 7;
+        break;
+      case "August":
+        integer = 8;
+        break;
+      case "September":
+        integer = 9;
+        break;
+      case "October":
+        integer = 10;
+        break;
+      case "November":
+        integer = 11;
+        break;
+      case "December":
+        integer = 12;
+        break;
+    }
+    return integer;
+  }
+
+  public int findMonthOfYear( int dayOfYear )
+  {
+    int m = 0;
+
+    for( int i = 0 ; i < 13;i++)
+    {
+      if ( dayOfYear >= daysUpToMonth[i] && dayOfYear < daysUpToMonth[i + 1])
+          m = i + 1;
+    }
+
+    return m;
+  }
+
+  public int findDayOfMonth( int dayOfYear)
+  {
+    int n, k = 0;
+
+    int m = findMonthOfYear(dayOfYear);
+
+    for ( int i = 0; i < m; i++)
+      k += daysPerMonth[i];
+
+    n = dayOfYear - k;
+
+    return n;
   }
 }
