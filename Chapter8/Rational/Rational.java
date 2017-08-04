@@ -98,19 +98,46 @@ public class Rational
   {
     Rational first = this;
 
-    return new Rational(first.getNumerator() * first.getNumerator(),second.getNumerator() * second.getNumerator());
+    int n = first.getNumerator() * second.getNumerator();
+    int d = first.getDenomenator() * second.getDenomenator();
+
+    int l = gcd(n, d);
+
+    if ( n % l == 0 && d % l == 0 )
+    {
+      n /= l;
+      d /= l;
+    }
+
+    return new Rational(n, d);
   }
 
   public Rational divide( Rational second )
   {
     Rational first = this;
 
-    return new Rational(first.getNumerator() * second.getDenomenator(),first.getDenomenator() * second.getNumerator());
+    int n, d, l ;
+
+    n = first.getNumerator() * second.getDenomenator();
+    d = first.getDenomenator() * second.getNumerator();
+
+    int l1 = gcd(n, d);
+
+    if ( n % l1 == 0 && d % l1 == 0 )
+    {
+      n /= l1;
+      d /= l1;
+    }
+
+    return new Rational(n, d);
   }
 
   public String toString()
   {
-    return getNumerator() + " / " + getDenomenator();
+    if ( getDenomenator() == 1)
+       return getNumerator() + " ";
+    else
+       return getNumerator() + " / " + getDenomenator();
   }
 
   public int lcm(int first, int second)
@@ -132,5 +159,4 @@ public class Rational
 
     return LCM;
   }
-
 }

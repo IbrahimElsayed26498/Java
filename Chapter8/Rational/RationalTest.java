@@ -22,8 +22,8 @@ public class RationalTest
 
     e = a.addition(b); // e = a + b
     f = b.subtraction(a); // f = b - a
-    g = c.divide(a);
-    f = f.multiply(c);
+    g = c.divide(a); // g = c / a
+    h = f.multiply(c); // h = f * c
 
     System.out.println("Rational Numbers ( Fractions ) a,b,c,d Before Arithmetic");
     System.out.printf("e = a + b = %s\n", e.toString());
