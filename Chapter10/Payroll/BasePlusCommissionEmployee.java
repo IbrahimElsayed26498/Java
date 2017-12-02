@@ -6,10 +6,14 @@
  {
      private double baseSalary;
 
-     public BasePlusCommissionEmployee(String fNAme, String lName, String SSN, double sales, double rate, double baseSalary)
+     public BasePlusCommissionEmployee(String fNAme, String lName, String SSN, Date birthDate, double sales, double rate, double baseSalary)
      {
-         super(fNAme, lName, SSN, sales, rate);
-         setBaseSalary(baseSalary);
+         super(fNAme, lName, SSN, birthDate, sales, rate);
+
+         if ( baseSalary < 0.0)
+             throw new IllegalArgumentException("Base Salary Must Be Positive");
+
+         this.baseSalary = baseSalary;
      }
 
      public double getBaseSalary() {
@@ -25,14 +29,14 @@
      }
 
      @Override
-     public double earnings()
+     public double getPaymentAmount(double bonus)
      {
-         return getBaseSalary() + super.earnings();
+         return bonus + getBaseSalary() + super.getPaymentAmount(0);
      }
 
      @Override
      public String toString()
      {
-         return String.format("%sBase Salary : %.2f", super.toString(), getBaseSalary() );
+         return String.format("%s, Base Salary : %.2f", super.toString(), getBaseSalary());
      }
  }

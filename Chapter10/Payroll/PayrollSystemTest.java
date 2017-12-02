@@ -8,21 +8,25 @@
      public static void main(String[] args)
      {
          //Create subclass objects
-         SalariedEmployee salariedEmployee = new SalariedEmployee("Ayuk", "Etta", "111-111", 800.00 );
-         HourlyEmployee hourlyEmployee = new HourlyEmployee("Awasum", "Yannick", "111-222", 16.75, 40.0 );
-         CommissionEmployee commissionEmployee = new CommissionEmployee("Isaac", "Kamga", "111-333", 10000, 0.06 );
+         SalariedEmployee salariedEmployee = new SalariedEmployee("Ayuk", "Etta", "111-111", new Date(10,10,1991), 800.00 );
+         HourlyEmployee hourlyEmployee = new HourlyEmployee("Awasum", "Yannick", "111-222", new Date(12, 5,1991), 16.75, 40.0 );
+         CommissionEmployee commissionEmployee = new CommissionEmployee("Isaac", "Kamga", "111-333", new Date(5,27,1987), 10000, 0.06 );
          BasePlusCommissionEmployee basePlusCommissionEmployee
-                 = new BasePlusCommissionEmployee("Acha", "Rolence", "111-444", 5000, 0.04, 300 );
+                 = new BasePlusCommissionEmployee("Acha", "Rolence", "111-444", new Date(12, 23, 1995), 5000, 0.04, 300 );
 
-         System.out.println("Employees processed individually:");
+         System.out.println("Employees processed individually:\n\n");
 
-         System.out.printf("%sEarned %.2f\n\n", salariedEmployee, salariedEmployee.earnings() );
-         System.out.printf("%sEarned %.2f\n\n", hourlyEmployee, hourlyEmployee.earnings() );
-         System.out.printf("%sEarned %.2f\n\n", commissionEmployee, commissionEmployee.earnings() );
-         System.out.printf("%sEarned %.2f\n\n", basePlusCommissionEmployee, basePlusCommissionEmployee.earnings() );
+         System.out.printf("%s Has Earned %.2f USD\n\n", salariedEmployee, salariedEmployee.getPaymentAmount(0) );
+         System.out.printf("%s has Earned %.2f USD\n\n", hourlyEmployee, hourlyEmployee.getPaymentAmount(0) );
+         System.out.printf("%s Has Earned %.2f USD\n\n", commissionEmployee, commissionEmployee.getPaymentAmount(0) );
+         System.out.printf("%s Has Earned %.2f USD\n\n", basePlusCommissionEmployee, basePlusCommissionEmployee.getPaymentAmount(0) );
 
          // Create a new Employee array
          Employee[] employees = new Employee[4];
+
+         int currentMonth = 12; // December
+
+         double birthMonthPresent = 100.00; // birth month present
 
          // Initialise Employees with objects
          employees[0] = salariedEmployee;
@@ -47,7 +51,10 @@
                  System.out.printf("New Base Salary with 10 Percent increase is: %.2f\n", employee.getBaseSalary());
              }
 
-             System.out.printf("Earned %.2f\n\n", currentEmployee.earnings());
+             if ( currentEmployee.getBirthDate().getMonth() == currentMonth )
+                 System.out.printf("Has Earned %.2f USD\n", currentEmployee.getPaymentAmount(birthMonthPresent));
+             else
+                 System.out.printf("Has Earned %.2f USD\n", currentEmployee.getPaymentAmount(0.00));
          }
      }
  }

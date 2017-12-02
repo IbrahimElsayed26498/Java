@@ -7,11 +7,18 @@
      private double grossSales;
      private double commissionRate;
 
-     public CommissionEmployee(String firstName, String lastName, String SSN, double grossSales, double commissionRate)
+     public CommissionEmployee(String firstName, String lastName, String SSN, Date birthDate, double grossSales, double commissionRate)
      {
-         super(firstName, lastName, SSN);
-         setGrossSales(grossSales);
-         setCommissionRate(commissionRate);
+         super(firstName, lastName, SSN, birthDate);
+         if (grossSales < 0.0)
+             throw new IllegalArgumentException("Gross Sales Must Be Positive");
+
+         this.grossSales = grossSales;
+
+         if ((commissionRate < 0.0) || (commissionRate >= 1.0))
+             throw new IllegalArgumentException("Commission Rate Must Be In [0,1]");
+
+         this.commissionRate = commissionRate;
      }
 
      public double getGrossSales() {
@@ -39,14 +46,14 @@
      }
 
      @Override
-     public double earnings()
+     public double getPaymentAmount(double bonus)
      {
-         return getCommissionRate() * getGrossSales();
+         return bonus + getCommissionRate() * getGrossSales();
      }
 
      @Override
      public String toString()
      {
-         return String.format("%sGross Sales : %.2f\nCommission Rate : %.2f", super.toString(), getGrossSales(), getCommissionRate());
+         return String.format("%s, Gross Sales : %.2f, Commission Rate : %.2f", super.toString(), getGrossSales(), getCommissionRate());
      }
  }

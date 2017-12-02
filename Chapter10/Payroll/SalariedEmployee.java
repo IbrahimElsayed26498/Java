@@ -6,9 +6,9 @@
  {
      private double weeklySalary;
 
-     public SalariedEmployee( String firstName, String lastName, String SSN, double weeklySalary )
+     public SalariedEmployee( String firstName, String lastName, String SSN, Date birthDate, double weeklySalary )
      {
-        super(firstName, lastName, SSN);
+        super(firstName, lastName, SSN, birthDate);
 
         if ( weeklySalary < 0.0 )
             throw new IllegalArgumentException("Weekly Salary Must Be Positive");
@@ -29,14 +29,14 @@
 
      //This is where you actually implement interface payable in the Employee class
      @Override
-     public double getPaymentAmount()
+     public double getPaymentAmount(double bonus)
      {
-         return getWeeklySalary();
+         return bonus + getWeeklySalary();
      }
 
      @Override
      public String toString()
      {
-         return String.format("%sWeekly Salary : %.2f", super.toString(), getWeeklySalary());
+         return String.format("%s, Weekly Salary : %.2f", super.toString(), getWeeklySalary());
      }
  }
