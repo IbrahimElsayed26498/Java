@@ -37,6 +37,6 @@
      @Override
      public String toString()
      {
-         return String.format("%s, Weekly Salary : %.2f", super.toString(), getWeeklySalary());
+         return String.format("%s, Weekly Salary :%.2f", super.toString(), getWeeklySalary());
      }
  }

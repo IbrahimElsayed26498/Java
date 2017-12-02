@@ -13,16 +13,18 @@
          CommissionEmployee commissionEmployee = new CommissionEmployee("Isaac", "Kamga", "111-333", new Date(5,27,1987), 10000, 0.06 );
          BasePlusCommissionEmployee basePlusCommissionEmployee
                  = new BasePlusCommissionEmployee("Acha", "Rolence", "111-444", new Date(12, 23, 1995), 5000, 0.04, 300 );
+         PieceWorker pieceWorkerEmployee = new PieceWorker("Akoko", "Bill-Elton", "111-555", new Date(12, 5, 1992), 4.50, 100 );
 
-         System.out.println("Employees processed individually:\n\n");
+         System.out.println("Employees processed individually:\n");
 
          System.out.printf("%s Has Earned %.2f USD\n\n", salariedEmployee, salariedEmployee.getPaymentAmount(0) );
          System.out.printf("%s has Earned %.2f USD\n\n", hourlyEmployee, hourlyEmployee.getPaymentAmount(0) );
          System.out.printf("%s Has Earned %.2f USD\n\n", commissionEmployee, commissionEmployee.getPaymentAmount(0) );
          System.out.printf("%s Has Earned %.2f USD\n\n", basePlusCommissionEmployee, basePlusCommissionEmployee.getPaymentAmount(0) );
+         System.out.printf("%s Has Earned %.2f USD\n\n", pieceWorkerEmployee, pieceWorkerEmployee.getPaymentAmount(0));
 
          // Create a new Employee array
-         Employee[] employees = new Employee[4];
+         Employee[] employees = new Employee[5];
 
          int currentMonth = 12; // December
 
@@ -33,6 +35,7 @@
          employees[1] = hourlyEmployee;
          employees[2] = commissionEmployee;
          employees[3] = basePlusCommissionEmployee;
+         employees[4] = pieceWorkerEmployee;
 
          System.out.printf("Employees processed polymorphically:\n\n");
 

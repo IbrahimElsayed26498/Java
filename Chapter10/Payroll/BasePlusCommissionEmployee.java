@@ -37,6 +37,6 @@
      @Override
      public String toString()
      {
-         return String.format("%s, Base Salary : %.2f", super.toString(), getBaseSalary());
+         return String.format("%s, Base Salary :%.2f", super.toString(), getBaseSalary());
      }
  }

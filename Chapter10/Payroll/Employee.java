@@ -37,7 +37,7 @@
 
      public String toString()
      {
-         return String.format("FirstName : %s, LastName : %s, Social Security Number : %s, Birth Date : %s",
+         return String.format("FirstName :%s, LastName :%s, Social Security Number :%s, Birth Date :%s",
                  getFirstName(), getLastName(), getSSN(), getBirthDate().toString());
      }
  }

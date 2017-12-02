@@ -63,6 +63,6 @@
      @Override
      public String toString()
      {
-         return String.format("%s, Hourly Wage : %.2f, Hours Worked : %.2f", super.toString(), getHourlyWage(), getHoursWorked() );
+         return String.format("%s, Hourly Wage :%.2f, Hours Worked :%.2f", super.toString(), getHourlyWage(), getHoursWorked() );
      }
  }

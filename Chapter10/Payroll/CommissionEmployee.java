@@ -54,6 +54,6 @@
      @Override
      public String toString()
      {
-         return String.format("%s, Gross Sales : %.2f, Commission Rate : %.2f", super.toString(), getGrossSales(), getCommissionRate());
+         return String.format("%s, Gross Sales :%.2f, Commission Rate :%.2f", super.toString(), getGrossSales(), getCommissionRate());
      }
  }
