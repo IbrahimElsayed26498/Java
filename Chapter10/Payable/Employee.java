@@ -42,4 +42,13 @@
          return String.format("FirstName :%s, LastName :%s, Social Security Number :%s, BirthDate :%s, ",
                  getFirstName(), getLastName(), getSSN(), getBirthDate().toString() );
      }
+
+     // abstract method must be overridden by concrete subclasses
+     public abstract double earnings();
+
+     @Override
+     public double getPaymentAmount()
+     {
+        return earnings();
+     }
  }
