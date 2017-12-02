@@ -8,6 +8,7 @@
      private String firstName;
      private String lastName;
      private String SSN;
+     private Date birthDate;
 
      public Employee(String firstName, String lastName, String SSN)
      {
