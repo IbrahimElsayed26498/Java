@@ -1,4 +1,6 @@
-// Date.java
+/* Date.java
+ * Exercise 10.12 Payroll System Modification
+ */
 
 public class Date
 {

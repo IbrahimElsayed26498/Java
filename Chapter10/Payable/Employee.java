@@ -10,11 +10,12 @@
      private String SSN;
      private Date birthDate;
 
-     public Employee(String firstName, String lastName, String SSN)
+     public Employee(String firstName, String lastName, String SSN, Date birthDate)
      {
          this.firstName = firstName;
          this.lastName = lastName;
          this.SSN = SSN;
+         this.birthDate = birthDate;
      }
 
      public String getFirstName()
@@ -32,8 +33,13 @@
          return SSN;
      }
 
+     public Date getBirthDate() {
+         return birthDate;
+     }
+
      public String toString()
      {
-         return String.format("FirstName : %s\nLastName : %s\nSocial Security Number : %s\n", getFirstName(), getLastName(), getSSN());
+         return String.format("FirstName :%s, LastName :%s, Social Security Number :%s, BirthDate :%s, ",
+                 getFirstName(), getLastName(), getSSN(), getBirthDate().toString() );
      }
  }

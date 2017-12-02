@@ -58,10 +58,10 @@
 
      public String toString()
      {
-        return String.format("%s%s,%s%s,%s%2d, %s%.2f\n", "Part Number : ", getPartNumber(),
-                "Part Description : ", getPartDescription(),
-                "Quantity : ", getQuantity(),
-                "Price Per Item : ", getPricePerItem() );
+        return String.format("%s%s,%s%s,%s%2d, %s%.2f\n", "Part Number :", getPartNumber(),
+                "Part Description :", getPartDescription(),
+                "Quantity :", getQuantity(),
+                "Price Per Item :", getPricePerItem() );
      }
 
      @Override

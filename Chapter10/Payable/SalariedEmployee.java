@@ -6,12 +6,13 @@
  {
      private double weeklySalary;
 
-     public SalariedEmployee( String firstName, String lastName, String SSN, double weeklySalary )
+     public SalariedEmployee( String firstName, String lastName, String SSN, Date birthDate, double weeklySalary )
      {
-        super(firstName, lastName, SSN);
+        super(firstName, lastName, SSN, birthDate);
 
         if ( weeklySalary < 0.0 )
             throw new IllegalArgumentException("Weekly Salary Must Be Positive");
+
         this.weeklySalary = weeklySalary;
      }
 
@@ -34,9 +35,10 @@
          return getWeeklySalary();
      }
 
+
      @Override
      public String toString()
      {
-         return String.format("%sWeekly Salary : %.2f", super.toString(), getWeeklySalary());
+         return String.format("%sWeekly Salary :%.2f", super.toString(), getWeeklySalary());
      }
  }
