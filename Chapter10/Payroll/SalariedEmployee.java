@@ -29,9 +29,9 @@
 
      //This is where you actually implement interface payable in the Employee class
      @Override
-     public double getPaymentAmount(double bonus)
+     public double earnings()
      {
-         return bonus + getWeeklySalary();
+         return getWeeklySalary();
      }
 
      @Override

@@ -46,9 +46,9 @@
      }
 
      @Override
-     public double getPaymentAmount(double bonus)
+     public double earnings()
      {
-         return bonus + getCommissionRate() * getGrossSales();
+         return getCommissionRate() * getGrossSales();
      }
 
      @Override

@@ -51,12 +51,12 @@
 
      // calculate earnings by overriding abstract method earnings()
      @Override
-     public double getPaymentAmount(double bonus)
+     public double earnings()
      {
          if ( getHoursWorked() <= 40.0)
-             return bonus + getHoursWorked() * getHourlyWage();
+             return getHoursWorked() * getHourlyWage();
          else
-             return bonus + 40.0 * getHourlyWage() + (getHoursWorked() - 40.0 ) * 1.5 * getHourlyWage();
+             return 40.0 * getHourlyWage() + (getHoursWorked() - 40.0 ) * 1.5 * getHourlyWage();
      }
 
      // return String representation of Employee

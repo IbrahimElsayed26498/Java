@@ -5,5 +5,5 @@
 
  public interface Payable
  {
-     double getPaymentAmount(double bonus); // calculate payment, ( no implementation...although default methods in 8 can implement )
+     double earnings(); // calculate payment, ( no implementation...although default methods in 8 can implement )
  }

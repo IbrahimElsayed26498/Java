@@ -17,11 +17,11 @@
 
          System.out.println("Employees processed individually:\n");
 
-         System.out.printf("%s Has Earned %.2f USD\n\n", salariedEmployee, salariedEmployee.getPaymentAmount(0) );
-         System.out.printf("%s has Earned %.2f USD\n\n", hourlyEmployee, hourlyEmployee.getPaymentAmount(0) );
-         System.out.printf("%s Has Earned %.2f USD\n\n", commissionEmployee, commissionEmployee.getPaymentAmount(0) );
-         System.out.printf("%s Has Earned %.2f USD\n\n", basePlusCommissionEmployee, basePlusCommissionEmployee.getPaymentAmount(0) );
-         System.out.printf("%s Has Earned %.2f USD\n\n", pieceWorkerEmployee, pieceWorkerEmployee.getPaymentAmount(0));
+         System.out.printf("%s Has Earned %.2f USD\n\n", salariedEmployee, salariedEmployee.earnings());
+         System.out.printf("%s has Earned %.2f USD\n\n", hourlyEmployee, hourlyEmployee.earnings());
+         System.out.printf("%s Has Earned %.2f USD\n\n", commissionEmployee, commissionEmployee.earnings());
+         System.out.printf("%s Has Earned %.2f USD\n\n", basePlusCommissionEmployee, basePlusCommissionEmployee.earnings());
+         System.out.printf("%s Has Earned %.2f USD\n\n", pieceWorkerEmployee, pieceWorkerEmployee.earnings());
 
          // Create a new Employee array
          Employee[] employees = new Employee[5];
@@ -55,9 +55,9 @@
              }
 
              if ( currentEmployee.getBirthDate().getMonth() == currentMonth )
-                 System.out.printf("Has Earned %.2f USD\n", currentEmployee.getPaymentAmount(birthMonthPresent));
+                 System.out.printf("Has Earned %.2f USD\n", currentEmployee.earnings() + birthMonthPresent );
              else
-                 System.out.printf("Has Earned %.2f USD\n", currentEmployee.getPaymentAmount(0.00));
+                 System.out.printf("Has Earned %.2f USD\n", currentEmployee.earnings());
          }
      }
  }

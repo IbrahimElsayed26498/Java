@@ -29,9 +29,9 @@
      }
 
      @Override
-     public double getPaymentAmount(double bonus)
+     public double earnings()
      {
-         return bonus + getBaseSalary() + super.getPaymentAmount(0);
+         return getBaseSalary() + super.earnings();
      }
 
      @Override

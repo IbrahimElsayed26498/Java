@@ -46,9 +46,9 @@ public class PieceWorker extends Employee
 
     // calculate earnings by overriding abstract method earnings()
     @Override
-    public double getPaymentAmount(double bonus)
+    public double earnings()
     {
-        return bonus + getPiecesWorked() * getWagePerPiece();
+        return getPiecesWorked() * getWagePerPiece();
     }
 
     // return String representation of Employee
