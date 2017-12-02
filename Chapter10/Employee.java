@@ -2,7 +2,7 @@
  * Example 10.4 : Abstract Class Employee
  */
 
- public abstract class Employee
+ public abstract class Employee implements Payable
  {
 
      private String firstName;
@@ -35,7 +35,4 @@
      {
          return String.format("FirstName : %s\nLastName : %s\nSocial Security Number : %s\n", getFirstName(), getLastName(), getSSN());
      }
-
-     //Abstract earnings() method
-     public abstract double earnings(); // Implementation not here
  }
