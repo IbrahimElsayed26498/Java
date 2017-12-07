@@ -13,7 +13,7 @@ public class StringMiscellaneous {
         System.out.printf("\nThe String Reversed Is : \n");
 
         for (int count = s1.length() - 1; count >= 0; count--)
-            System.out.println(s1.charAt(count));
+            System.out.print(s1.charAt(count));
 
         s1.getChars(0, 5, charArray, 0 );
         System.out.printf("\n The Character array is ");
