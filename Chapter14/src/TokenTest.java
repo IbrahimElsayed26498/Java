@@ -16,7 +16,7 @@ public class TokenTest {
 
         // Process user sentence
         String[] tokens = sentence.split(" ");
-        System.out.printf("Number of elements: %d\nThe tokens are: \n", tokens.length );
+        System.out.printf("Nuqmber of elements: %d\nThe tokens are: \n", tokens.length );
 
         // Print out tokens
         for (String token : tokens)
