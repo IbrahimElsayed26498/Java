@@ -1,5 +1,5 @@
-/**
- * Exercise 14.11 : Search Character In Text
+/*
+ * Exercise 14.11 - 14.12 : Search Character(s) In Text
  */
 
 import java.util.Scanner;
@@ -14,20 +14,38 @@ public class SearchString {
         System.out.printf("Please enter a line of text : ");
         String text = scanLine.nextLine();
 
-        System.out.printf("Please enter a character : ");
-        char character = scanChar.next().charAt(0);
+        char[] character = new char[text.length()];
 
-        int times = 0;
-
-        for (int i = 0; i < text.length(); i++)
+        for (int j = 0; j < text.length(); j++)
         {
-            if ( text.charAt(i) == character )
+            character[j] = text.charAt(j);
+        }
+
+        int[] occurences = new int[text.length()];
+
+        for (int k = 0; k < occurences.length; k++)
+            occurences[k] = 0;
+
+        for (int j = 0; j < text.length(); j++)
+        {
+            for (int i = 0; i < text.length(); i++)
             {
-                System.out.printf("%c is located at index %d\n", character, i);
-                times++;
+                if ( text.charAt(i) == character[j] )
+                {
+                    System.out.printf("%c is located at index %d\n", character[j], i);
+                    occurences[j]++;
+                }
             }
         }
 
-        System.out.printf("\n%c occurs %d times in text %s\n", character, times, text);
+        System.out.printf("Character \t Occurences");
+
+        for (int j = 0; j < text.length(); j++)
+        {
+            if (occurences[j] < 2)
+                System.out.printf("\n%c \t\t %d ", character[j], occurences[j]);
+            else
+                System.out.printf("\n%c \t\t %d ", character[j], occurences[j]);
+        }
     }
 }
