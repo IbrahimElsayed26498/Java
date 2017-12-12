@@ -1,5 +1,5 @@
 /**
- * Exercise 14.13 : Tokenizing and comparing Strings
+ * Exercise 14.13 - 14 : Tokenizing and comparing Strings
  */
 
 import java.util.Scanner;
@@ -16,9 +16,19 @@ public class TokenizeStrings {
 
         String[] sentenceTokens = sentence.split(" ");
 
+        System.out.printf("Words Starting With b\n");
+
         for (String token : sentenceTokens)
         {
             if (token.startsWith("b"))
+                System.out.printf("%s ",token);
+        }
+
+        System.out.printf("Words Ending With ED\n");
+
+        for (String token : sentenceTokens)
+        {
+            if (token.endsWith("ED"))
                 System.out.printf("%s ",token);
         }
     }
