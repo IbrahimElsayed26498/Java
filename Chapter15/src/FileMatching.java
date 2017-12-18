@@ -1,14 +1,10 @@
 /**
  * Exercise 15.4 : FileMatching.java
  */
-import java.awt.*;
+
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.text.Normalizer;
-import java.util.FormatterClosedException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Formatter;
@@ -361,7 +357,6 @@ public class FileMatching {
                     {
                         outputFour.format("\nUnmatched transaction record for account number %d\n", transactionRecord.getAccountNumber() );
                     }
-
                 }
             }
         }
