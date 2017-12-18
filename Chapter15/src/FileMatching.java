@@ -7,6 +7,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.Normalizer;
 import java.util.FormatterClosedException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -16,6 +17,8 @@ public class FileMatching {
 
     private static Formatter outputOne;
     private static Formatter outputTwo;
+    private static Formatter outputThree;
+    private static Formatter outputFour;
     private static Scanner inputOne;
     private static Scanner inputTwo;
 
@@ -108,7 +111,7 @@ public class FileMatching {
         }
     }
 
-    // open master file for writing
+    // open old master file for writing
     public static void openMasterFileForWriting()
     {
         try
@@ -123,7 +126,7 @@ public class FileMatching {
         }
     }
 
-    // open master file for reading
+    // open old master file for reading
     public static void openMasterFileForReading()
     {
         try
@@ -168,6 +171,36 @@ public class FileMatching {
         }
     }
 
+    // open new master file for writing
+    public static void openNewMasterFileForWriting()
+    {
+        try
+        {
+            outputThree = new Formatter("newMast.txt");
+            //ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("oldMast.txt")));
+        }
+        catch(IOException ioException)
+        {
+            System.err.printf("Error opening file");
+            System.exit(1);
+        }
+    }
+
+    // open log file for writing
+    public static void openLogFileForWriting()
+    {
+        try
+        {
+            outputFour = new Formatter("log.txt");
+            //ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("oldMast.txt")));
+        }
+        catch(IOException ioException)
+        {
+            System.err.printf("Error opening file");
+            System.exit(1);
+        }
+    }
+
     // add records to master file
     public static void addRecordsToMaster()
     {
@@ -182,6 +215,36 @@ public class FileMatching {
                 //ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("oldMast.txt")));
                 //Account record = new Account(input.nextInt(), input.next(), input.next(), input.nextDouble());
                 outputOne.format("%d %s %s %.2f\n", input.nextInt(), input.next(), input.next(), input.nextDouble() );
+            }
+            catch(NoSuchElementException elementException)
+            {
+                System.err.printf("Invalid input. please try again");
+                input.nextLine();
+            }
+            /*catch(IOException ioException)
+            {
+                System.err.printf("Error writing to file");
+                break;
+            }*/
+        }
+
+        System.out.printf(" ? ");
+    }
+
+    // add records to transactions file
+    public static void addTransactionRecords()
+    {
+        Scanner input = new Scanner(System.in);
+
+        System.out.printf("%s\n%s\n", "Enter Account Number and Transaction Amount", "Enter EOF Indicator To End");
+
+        while(input.hasNext())
+        {
+            try
+            {
+                //ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("trans.txt")));
+                //TransactionRecord transactionRecord = new TransactionRecord(input.nextInt(), input.nextDouble());
+                outputTwo.format("%d %.2f\n", input.nextInt(), input.nextDouble() );//writeObject(transactionRecord);
             }
             catch(NoSuchElementException elementException)
             {
@@ -221,36 +284,6 @@ public class FileMatching {
         }
     }
 
-    // add records to transactions file
-    public static void addTransactionRecords()
-    {
-        Scanner input = new Scanner(System.in);
-
-        System.out.printf("%s\n%s\n", "Enter Account Number and Transaction Amount", "Enter EOF Indicator To End");
-
-        while(input.hasNext())
-        {
-            try
-            {
-                //ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("trans.txt")));
-                //TransactionRecord transactionRecord = new TransactionRecord(input.nextInt(), input.nextDouble());
-                outputTwo.format("%d %.2f\n", input.nextInt(), input.nextDouble() );//writeObject(transactionRecord);
-            }
-            catch(NoSuchElementException elementException)
-            {
-                System.err.printf("Invalid input. please try again");
-                input.nextLine();
-            }
-            /*catch(IOException ioException)
-            {
-                System.err.printf("Error writing to file");
-                break;
-            }*/
-        }
-
-        System.out.printf(" ? ");
-    }
-
     //Read records from transaction file
     public static void readRecordsFromTransaction()
     {
@@ -274,7 +307,71 @@ public class FileMatching {
         }
     }
 
-    // close Master file after writing
+    // check matching records
+    public static void checkMatch()
+    {
+        try
+        {
+            while(inputOne.hasNext())
+            {
+                Account masterRecord = new Account( inputOne.nextInt(), inputOne.next(), inputOne.next(), inputOne.nextDouble());
+
+                while(inputTwo.hasNext())
+                {
+                    TransactionRecord transactionRecord = new TransactionRecord(inputTwo.nextInt(), inputTwo.nextDouble());
+
+                    // matching record occurs
+                    if (masterRecord.getAccount() == transactionRecord.getAccountNumber())
+                    {
+                        masterRecord.setBalance( masterRecord.getBalance() + transactionRecord.getAmount());
+
+                        // Write masterRecord to newMast.txt
+                        try //(Scanner input = new Scanner(Paths.get("newMast.txt")))
+                        {
+                            while(inputTwo.hasNext())
+                            {
+                                outputThree.format("%d %s %s %.2f", masterRecord.getAccount(), masterRecord.getFirstName(),
+                                        masterRecord.getLastName(), masterRecord.getBalance());
+                            }
+                        }
+                        catch(NoSuchElementException | IllegalStateException error)
+                        {
+                            System.err.println("Error processing file.");
+                            System.exit(1);
+                        }
+                    }
+                    else if ((masterRecord.getAccount() != 0) && ( masterRecord.getAccount() != transactionRecord.getAccountNumber()))
+                    {
+                        // Write masterRecord to newMast.txt
+                        try //(Scanner input = new Scanner(Paths.get("newMast.txt")))
+                        {
+                            while(inputTwo.hasNext())
+                            {
+                                outputThree.format("%d %s %s %.2f", masterRecord.getAccount(), masterRecord.getFirstName(),
+                                        masterRecord.getLastName(), masterRecord.getBalance());
+                            }
+                        }
+                        catch(NoSuchElementException | IllegalStateException error)
+                        {
+                            System.err.println("Error processing file.");
+                            System.exit(1);
+                        }
+                    }
+                    else if ((transactionRecord.getAccountNumber() != 0) && (transactionRecord.getAccountNumber() != masterRecord.getAccount()))
+                    {
+                        outputFour.format("\nUnmatched transaction record for account number %d\n", transactionRecord.getAccountNumber() );
+                    }
+
+                }
+            }
+        }
+        catch(NoSuchElementException elementException)
+        {
+            System.err.println("File improperly formed. Terminating.");
+        }
+    }
+
+    // close old Master file after writing
     public static void closeMasterFileAfterWriting()
     {
         //ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("oldMast.txt")));
@@ -283,13 +380,22 @@ public class FileMatching {
             outputOne.close();
     }
 
-    // close Master file after reading
+    // close old Master file after reading
     public static void closeMasterFileAfterReading()
     {
         //ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("oldMast.txt")));
 
         if (inputOne != null)
             inputOne.close();
+    }
+
+    // close new Master file after writing
+    public static void closeNewMasterFileAfterWriting()
+    {
+        //ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("oldMast.txt")));
+
+        if (outputThree != null)
+            outputThree.close();
     }
 
     // close Transaction file after writing
@@ -308,6 +414,15 @@ public class FileMatching {
 
         if (inputTwo != null)
             inputTwo.close();
+    }
+
+    // close log file after writing
+    public static void closeLogFileAfterWriting()
+    {
+        //ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("trans.txt")));
+
+        if (outputFour != null)
+            outputFour.close();
     }
 
     public static void main(String[] args)
@@ -355,5 +470,30 @@ public class FileMatching {
 
         // Close Transaction file after reading
         closeTransactionFileAfterWriting();
+
+        System.out.printf("\nRead Records From Master & Transaction Files To Compare\n\n");
+
+        // open master and transaction files for reading
+        openMasterFileForReading();
+        openTransactionFileForReading();
+
+        // open new master file for writing
+        openNewMasterFileForWriting();
+
+        // open log file for writing
+        openLogFileForWriting();
+
+        // Check Matching records
+        checkMatch();
+
+        // close master and transaction files after reading
+        closeMasterFileAfterReading();
+        closeTransactionFileAfterReading();
+
+        // close new master file after writing
+        closeNewMasterFileAfterWriting();
+
+        // close log file after writing
+        closeLogFileAfterWriting();
     }
 }
