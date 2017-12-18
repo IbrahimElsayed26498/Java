@@ -7,10 +7,15 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.FormatterClosedException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.Formatter;
 
 public class FileMatching {
+
+    private static Formatter outputOne;
+    private static Formatter outputTwo;
 
     // Define class TransactionRecord
     public static class TransactionRecord
@@ -106,7 +111,8 @@ public class FileMatching {
     {
         try
         {
-            ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("oldMast.txt")));
+            outputOne = new Formatter("oldMast.txt");
+            //ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("oldMast.txt")));
         }
         catch(IOException ioException)
         {
@@ -120,7 +126,8 @@ public class FileMatching {
     {
         try
         {
-            ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("trans.txt")));
+            outputTwo = new Formatter("trans.txt");
+            //ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("trans.txt")));
         }
         catch(IOException ioException)
         {
@@ -140,20 +147,20 @@ public class FileMatching {
         {
             try
             {
-                ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("oldMast.txt")));
-                Account record = new Account(input.nextInt(), input.next(), input.next(), input.nextDouble());
-                output.writeObject(record);
+                //ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("oldMast.txt")));
+                //Account record = new Account(input.nextInt(), input.next(), input.next(), input.nextDouble());
+                outputOne.format("%d %s %s %.2f\n", input.nextInt(), input.next(), input.next(), input.nextDouble() );
             }
             catch(NoSuchElementException elementException)
             {
                 System.err.printf("Invalid input. please try again");
                 input.nextLine();
             }
-            catch(IOException ioException)
+            /*catch(IOException ioException)
             {
                 System.err.printf("Error writing to file");
                 break;
-            }
+            }*/
         }
 
         System.out.printf(" ? ");
@@ -170,20 +177,20 @@ public class FileMatching {
         {
             try
             {
-                ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("trans.txt")));
-                TransactionRecord transactionRecord = new TransactionRecord(input.nextInt(), input.nextDouble());
-                output.writeObject(transactionRecord);
+                //ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("trans.txt")));
+                //TransactionRecord transactionRecord = new TransactionRecord(input.nextInt(), input.nextDouble());
+                outputTwo.format("%d %.2f\n", input.nextInt(), input.nextDouble() );//writeObject(transactionRecord);
             }
             catch(NoSuchElementException elementException)
             {
                 System.err.printf("Invalid input. please try again");
                 input.nextLine();
             }
-            catch(IOException ioException)
+            /*catch(IOException ioException)
             {
                 System.err.printf("Error writing to file");
                 break;
-            }
+            }*/
         }
 
         System.out.printf(" ? ");
@@ -192,35 +199,19 @@ public class FileMatching {
     // close Master file
     public static void closeMasterFile()
     {
-        try
-        {
-            ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("oldMast.txt")));
+        //ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("oldMast.txt")));
 
-            if (output != null)
-                output.close();
-        }
-        catch (IOException ioException)
-        {
-            System.err.printf("Error closing file ");
-            System.exit(1);
-        }
+        if (outputOne != null)
+            outputOne.close();
     }
 
     // close Transaction file
     public static void closeTransactionFile()
     {
-        try
-        {
-            ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("trans.txt")));
+        //ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("trans.txt")));
 
-            if (output != null)
-                output.close();
-        }
-        catch (IOException ioException)
-        {
-            System.err.printf("Error closing file ");
-            System.exit(1);
-        }
+        if (outputTwo != null)
+            outputTwo.close();
     }
 
     public static void main(String[] args)
