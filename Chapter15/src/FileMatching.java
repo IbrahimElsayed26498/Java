@@ -16,6 +16,8 @@ public class FileMatching {
 
     private static Formatter outputOne;
     private static Formatter outputTwo;
+    private static Scanner inputOne;
+    private static Scanner inputTwo;
 
     // Define class TransactionRecord
     public static class TransactionRecord
@@ -106,8 +108,8 @@ public class FileMatching {
         }
     }
 
-    // open master file
-    public static void openMasterFile()
+    // open master file for writing
+    public static void openMasterFileForWriting()
     {
         try
         {
@@ -121,12 +123,42 @@ public class FileMatching {
         }
     }
 
-    // open transactions file
-    public static void openTransactionFile()
+    // open master file for reading
+    public static void openMasterFileForReading()
+    {
+        try
+        {
+            inputOne = new Scanner(Paths.get("oldMast.txt"));
+            //ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("oldMast.txt")));
+        }
+        catch(IOException ioException)
+        {
+            System.err.printf("Error opening file");
+            System.exit(1);
+        }
+    }
+
+    // open transactions file for writing
+    public static void openTransactionFileForWriting()
     {
         try
         {
             outputTwo = new Formatter("trans.txt");
+            //ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("trans.txt")));
+        }
+        catch(IOException ioException)
+        {
+            System.err.printf("Error opening file");
+            System.exit(1);
+        }
+    }
+
+    // open transactions file for reading
+    public static void openTransactionFileForReading()
+    {
+        try
+        {
+            inputTwo = new Scanner(Paths.get("trans.txt"));
             //ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("trans.txt")));
         }
         catch(IOException ioException)
@@ -166,6 +198,29 @@ public class FileMatching {
         System.out.printf(" ? ");
     }
 
+    //Read records from master file
+    public static void readRecordsFromMaster()
+    {
+        System.out.printf("%-10s%-12s%-12s%10s%n", "Account", "First Name", "Last Name", "Balance");
+
+        try
+        {
+            while(inputOne.hasNext())
+            {
+                // Display record contents
+                System.out.printf("%-10d%-12s%-12s%10.2f\n", inputOne.nextInt(), inputOne.next(), inputOne.next(), inputOne.nextDouble());
+            }
+        }
+        catch(NoSuchElementException elementException)
+        {
+            System.err.println("File improperly formed. Terminating.");
+        }
+        catch(IllegalStateException illegalState)
+        {
+            System.err.println("Error reading from file. Terminating.");
+        }
+    }
+
     // add records to transactions file
     public static void addTransactionRecords()
     {
@@ -196,8 +251,31 @@ public class FileMatching {
         System.out.printf(" ? ");
     }
 
-    // close Master file
-    public static void closeMasterFile()
+    //Read records from transaction file
+    public static void readRecordsFromTransaction()
+    {
+        System.out.printf("%s   %s\n", "Account", "Transaction Amount");
+
+        try
+        {
+            while(inputTwo.hasNext())
+            {
+                // Display record contents
+                System.out.printf("%-14d %13.2f\n", inputTwo.nextInt(), inputTwo.nextDouble());
+            }
+        }
+        catch(NoSuchElementException elementException)
+        {
+            System.err.println("File improperly formed. Terminating.");
+        }
+        catch(IllegalStateException illegalState)
+        {
+            System.err.println("Error reading from file. Terminating.");
+        }
+    }
+
+    // close Master file after writing
+    public static void closeMasterFileAfterWriting()
     {
         //ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("oldMast.txt")));
 
@@ -205,8 +283,17 @@ public class FileMatching {
             outputOne.close();
     }
 
-    // close Transaction file
-    public static void closeTransactionFile()
+    // close Master file after reading
+    public static void closeMasterFileAfterReading()
+    {
+        //ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("oldMast.txt")));
+
+        if (inputOne != null)
+            inputOne.close();
+    }
+
+    // close Transaction file after writing
+    public static void closeTransactionFileAfterWriting()
     {
         //ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("trans.txt")));
 
@@ -214,16 +301,59 @@ public class FileMatching {
             outputTwo.close();
     }
 
+    // close Transaction file after reading
+    public static void closeTransactionFileAfterReading()
+    {
+        //ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get("trans.txt")));
+
+        if (inputTwo != null)
+            inputTwo.close();
+    }
+
     public static void main(String[] args)
     {
-        System.out.printf("\nTime To Add Records To Master File oldMast.txt\n");
-        openMasterFile();
-        addRecordsToMaster();
-        closeMasterFile();
+        System.out.printf("\nAdd Records To Master File oldMast.txt\n\n");
 
-        System.out.printf("\nTime To Add Records To Transaction File trans.txt\n");
-        openTransactionFile();
+        // Open Master File for writing
+        openMasterFileForWriting();
+
+        // Add records to master file
+        addRecordsToMaster();
+
+        // Close Master file
+        closeMasterFileAfterWriting();
+
+        System.out.printf("\nAdd Records To Transaction File trans.txt\n\n");
+
+        // Open Transaction File for writing
+        openTransactionFileForWriting();
+
+        // Add records to transactions file
         addTransactionRecords();
-        closeTransactionFile();
+
+        // Close transactions file
+        closeTransactionFileAfterWriting();
+
+        System.out.printf("\nRead Records From Master File oldMast.txt\n\n");
+
+        // Open master file for reading
+        openMasterFileForReading();
+
+        // Read from master files
+        readRecordsFromMaster();
+
+        // Close master file
+        closeMasterFileAfterReading();
+
+        System.out.printf("\nRead Records From Transaction File trans.txt\n\n");
+
+        // Open transaction file for reading
+        openTransactionFileForReading();
+
+        // Read from transaction files
+        readRecordsFromTransaction();
+
+        // Close Transaction file after reading
+        closeTransactionFileAfterWriting();
     }
 }
