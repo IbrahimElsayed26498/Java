@@ -3,6 +3,7 @@
  * Lists, LinkedLists and ListIterators.
  */
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.ListIterator;
@@ -20,10 +21,7 @@ public class ListTest {
 
         // add colorsTwo elements to listTwo
         String[] colorsTwo = {"gold", "white", "brown", "blue", "gray", "silver"};
-        List<String> listTwo = new LinkedList<String>();
-
-        for (String col : colorsTwo)
-            listTwo.add(col);
+        List<String> listTwo = Arrays.asList(colorsTwo);
 
         // concatenate both lists
         listOne.addAll(listTwo);
