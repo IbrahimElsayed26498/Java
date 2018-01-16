@@ -57,5 +57,13 @@ public class ProcessingEmployees
     // sort employees in descending order by last name, then first name
     System.out.printf("\nEmployees in descending order by last name then first:\n");
     list.stream().sorted(lastThenFirst.reversed()).forEach(System.out::println);
+
+    // display unique employee last names sorted
+    System.out.printf("\nUnique employee last names:\n");
+    list.stream().map(Employee::getLastName).sorted().forEach(System.out::println);
+
+    // display only first and last names
+    System.out.printf("\nEmployee names in order by last name then first name:\n");
+    list.stream().sorted(lastThenFirst).map(Employee::getName).forEach(System.out::println);
   }
 }
